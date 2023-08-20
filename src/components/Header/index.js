@@ -1,17 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { HiBars3 } from 'react-icons/hi2';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Nav } from './styled';
 import 'bootstrap';
 
 export default function Header() {
-  const botaoClicado = useSelector((state) => state.example.botaoClicado);
-
-  // eslint-disable-next-line no-unused-expressions
-  botaoClicado ? toast.success('Clicado') : toast.error('Não Clicado');
   return (
     <Nav className="navbar navbar-expand-md">
       <Link to="/" className="navbar-brand">

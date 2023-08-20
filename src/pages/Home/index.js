@@ -9,8 +9,8 @@ import {
   HomeContent,
   DivImg,
 } from './styled';
-import homeCat from './imgs/homeCat.jpeg';
-import homeDog from './imgs/homeDog.jpeg';
+import homeCat from './imgs/homeCat150.webp';
+import homeDog from './imgs/homeDog150.webp';
 
 export default function Home() {
   return (

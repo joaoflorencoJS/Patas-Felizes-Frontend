@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import * as colors from '../../config/colors';
 
 export const Main = styled.main`
@@ -47,5 +48,17 @@ export const Main = styled.main`
     &:focus {
       border: 1px solid ${colors.pink4};
     }
+  }
+
+  img {
+    width: 150px;
+  }
+`;
+
+export const LogoLink = styled(Link)`
+  filter: none;
+
+  &:hover {
+    filter: none;
   }
 `;

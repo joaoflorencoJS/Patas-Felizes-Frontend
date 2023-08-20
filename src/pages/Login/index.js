@@ -2,11 +2,16 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import { Container } from '../../styles/GlobalStyles';
-import { Main } from './styled';
+import { LogoLink, Main } from './styled';
+import LogoPatasFelizes from './imgs/LogoPatasFelizes.webp';
 
 export default function Login() {
   return (
     <Main>
+      <LogoLink to="/">
+        <img src={LogoPatasFelizes} alt="" />
+      </LogoLink>
+
       <h2>Entrar no Patas Felizes</h2>
 
       <Container className="card p-3">

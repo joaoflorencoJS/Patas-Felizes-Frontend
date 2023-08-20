@@ -9,9 +9,9 @@ import Register from '../pages/Register';
 export default function Routes() {
   return (
     <Switch>
-      <MyRoute exact path="/" component={Home} />
-      <MyRoute exact path="/login" component={Login} />
-      <MyRoute exact path="/register" component={Register} />
+      <MyRoute exact path="/" component={Home} isClosed={false} />
+      <MyRoute exact path="/login" component={Login} isClosed={false} />
+      <MyRoute exact path="/register" component={Register} isClosed={false} />
       <MyRoute path="*" component={Page404} />
     </Switch>
   );

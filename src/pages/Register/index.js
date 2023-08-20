@@ -3,12 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from '../../styles/GlobalStyles';
 import { Main } from './styled';
+import registerCat from './imgs/registerCat.webp';
 
 export default function Register() {
   return (
     <Main>
-      <h2>Registrar-se no Patas Felizes</h2>
+      <div>
+        <img src={registerCat} alt="Gato branco da tela de registro" />
 
+        <h2>Registrar-se no Patas Felizes</h2>
+      </div>
       <Container className="card p-3">
         <form action="">
           <label htmlFor="email">

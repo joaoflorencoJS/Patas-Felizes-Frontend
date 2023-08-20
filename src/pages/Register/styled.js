@@ -6,11 +6,17 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
   margin: 0 auto;
   width: 420px;
-  flex-direction: column;
   gap: 10px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
 
   .card {
     width: 100%;
@@ -48,5 +54,11 @@ export const Main = styled.main`
     &:focus {
       border: 1px solid ${colors.pink4};
     }
+  }
+
+  img {
+    width: 150px;
+    margin-left: -30px;
+    margin-bottom: -70px;
   }
 `;
