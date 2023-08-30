@@ -12,6 +12,10 @@ export const Main = styled.main`
   width: 420px;
   gap: 10px;
 
+  h2 {
+    text-align: center;
+  }
+
   div {
     display: flex;
     align-items: center;
