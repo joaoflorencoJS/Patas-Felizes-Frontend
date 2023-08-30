@@ -15,13 +15,17 @@ export default function Register() {
       </div>
       <Container className="card p-3">
         <form action="">
+          <label htmlFor="name">
+            Insira seu nome
+            <input type="text" id="name" required />
+          </label>
           <label htmlFor="email">
-            Nome de usuário ou endereço de email
-            <input type="email" id="email" />
+            Insira seu endereço de e-mail
+            <input type="email" id="email" required />
           </label>
           <label htmlFor="password">
-            Senha
-            <input type="password" id="password" />
+            Insira a sua senha
+            <input type="password" id="password" required />
           </label>
           <button type="submit">Entrar</button>
         </form>
