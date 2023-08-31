@@ -8,41 +8,44 @@ import {
   SpanTerciaryColor,
   HomeContent,
   DivImg,
+  LandingContainer,
 } from './styled';
 import homeCat from './imgs/homeCat150.webp';
 import homeDog from './imgs/homeDog150.webp';
 
 export default function Home() {
   return (
-    <Container className="jumbotron">
-      <div className="row">
-        <HomeContent className="col-md-6">
-          <SpanPrimaryColor className="display-3">
-            Patas Felizes
-          </SpanPrimaryColor>
-          <SpanTerciaryColor className="display-3">
-            Adoção e amor
-          </SpanTerciaryColor>
+    <Container>
+      <LandingContainer className="jumbotron mb-0">
+        <div className="row">
+          <HomeContent className="col-md">
+            <SpanPrimaryColor className="display-3">
+              Patas Felizes
+            </SpanPrimaryColor>
+            <SpanTerciaryColor className="display-3">
+              Adoção e amor
+            </SpanTerciaryColor>
 
-          <Link to="/register" className="btn btn-lg">
-            <LuLogIn size={24} />
-            Faça seu cadastro
-          </Link>
-        </HomeContent>
-        <HomeContent className="col-md-6">
-          <DivImg className="gap-20">
-            <Img src={homeCat} alt="" />
-            <Img src={homeDog} alt="" />
-          </DivImg>
+            <Link to="/register" className="btn btn-lg">
+              <LuLogIn size={24} />
+              Faça seu cadastro
+            </Link>
+          </HomeContent>
+          <HomeContent className="col-md">
+            <DivImg className="gap-20">
+              <Img src={homeCat} alt="" />
+              <Img src={homeDog} alt="" />
+            </DivImg>
 
-          <p className="lead">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate
-            atque repudiandae facere delectus at unde dolorum, veniam assumenda
-            vel soluta labore facilis laboriosam? Delectus odit non expedita,
-            illo culpa fuga.
-          </p>
-        </HomeContent>
-      </div>
+            <p className="lead">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Cupiditate atque repudiandae facere delectus at unde dolorum,
+              veniam assumenda vel soluta labore facilis laboriosam? Delectus
+              odit non expedita, illo culpa fuga.
+            </p>
+          </HomeContent>
+        </div>
+      </LandingContainer>
     </Container>
   );
 }

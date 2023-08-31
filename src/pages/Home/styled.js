@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
+export const LandingContainer = styled.section`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const SpanPrimaryColor = styled.span`
   color: ${colors.primaryColor};
   letter-spacing: 4px;
@@ -52,7 +59,6 @@ export const DivImg = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 150px;
   border-radius: 10px;
   border: 2px solid ${colors.terciaryColor};
 `;
