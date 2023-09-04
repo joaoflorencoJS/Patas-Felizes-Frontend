@@ -7,7 +7,7 @@ import 'bootstrap';
 
 export default function Header() {
   return (
-    <Nav className="navbar navbar-expand-md">
+    <Nav className="navbar navbar-expand-md sticky-top">
       <Link to="/" className="navbar-brand">
         Patas Felizes - Adoção e Amor
       </Link>
