@@ -6,11 +6,11 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 10px;
   height: 100%;
   margin: 0 auto;
   width: 340px;
-  flex-direction: column;
-  gap: 10px;
 
   .card {
     width: 100%;
