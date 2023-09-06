@@ -14,10 +14,10 @@ import homeDog from './imgs/homeDog150.webp';
 
 export default function LandingHomePageMain() {
   return (
-    <LandingContainer className="jumbotron mb-0">
+    <LandingContainer className="jumbotron mb-0 rounded-0">
       <div className="row">
         <HomeContent className="col-md">
-          <h1 className="d-flex flex-column align-items-center display-3">
+          <h1 className="d-flex flex-column align-items-center text-center display-3">
             <SpanPrimaryColor>Patas Felizes</SpanPrimaryColor>
             <SpanTerciaryColor>Adoção e amor</SpanTerciaryColor>
           </h1>

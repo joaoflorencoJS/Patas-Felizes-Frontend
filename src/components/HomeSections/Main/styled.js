@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import * as colors from '../../../config/colors';
 
 export const LandingContainer = styled.section`
-  height: 100vh;
+  /* height: calc(90vh - 70px); */
+  min-height: calc(90vh - 70px);
+  max-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 `;
 
 export const HomeContent = styled.div`
