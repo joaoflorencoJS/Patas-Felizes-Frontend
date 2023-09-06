@@ -1,49 +1,17 @@
 import React from 'react';
-import { LuLogIn } from 'react-icons/lu';
-import { Link } from 'react-router-dom';
 import { Container } from '../../styles/GlobalStyles';
 import {
-  Img,
   SpanPrimaryColor,
   SpanTerciaryColor,
   HomeContent,
-  DivImg,
   LandingContainer,
 } from './styled';
-import homeCat from './imgs/homeCat150.webp';
-import homeDog from './imgs/homeDog150.webp';
+import LandingHomePageMain from '../../components/HomeSections/Main';
 
 export default function Home() {
   return (
     <Container>
-      <LandingContainer className="jumbotron mb-0">
-        <div className="row">
-          <HomeContent className="col-md">
-            <h1 className="d-flex flex-column align-items-center display-3">
-              <SpanPrimaryColor>Patas Felizes</SpanPrimaryColor>
-              <SpanTerciaryColor>Adoção e amor</SpanTerciaryColor>
-            </h1>
-
-            <Link to="/register" className="btn btn-lg">
-              <LuLogIn size={24} />
-              Faça seu cadastro
-            </Link>
-          </HomeContent>
-          <HomeContent className="col-md">
-            <DivImg className="gap-20">
-              <Img src={homeCat} alt="" className="" />
-              <Img src={homeDog} alt="" className="img-fluid" />
-            </DivImg>
-
-            <p className="lead">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Cupiditate atque repudiandae facere delectus at unde dolorum,
-              veniam assumenda vel soluta labore facilis laboriosam? Delectus
-              odit non expedita, illo culpa fuga.
-            </p>
-          </HomeContent>
-        </div>
-      </LandingContainer>
+      <LandingHomePageMain />
       <LandingContainer className="mb-0">
         <div className="row container">
           <HomeContent className="col-md">
@@ -52,11 +20,37 @@ export default function Home() {
               <SpanTerciaryColor>SOMOS?</SpanTerciaryColor>
             </h1>
 
-            <p className="lead">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              voluptate exercitationem autem incidunt qui praesentium
-              reprehenderit accusantium explicabo temporibus? Voluptates
-              repellat sint quis minus inventore sit at reiciendis, nostrum nam.
+            <p className="lead text-center">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+              incidunt quibusdam provident maiores. Ex corrupti exercitationem
+              ab asperiores, aspernatur harum consequatur voluptate architecto
+              unde quasi aperiam fugiat magni et sunt praesentium quam adipisci
+              repellat ea minus expedita, ratione provident ad, quos maiores?
+              Voluptatibus est tempore architecto minus similique magni? Odit?
+            </p>
+
+            <p className="lead text-center">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
+              doloremque error eaque maiores magni necessitatibus accusantium?
+              Laborum, omnis ad, consequatur mollitia fugiat odit, quibusdam
+              inventore corrupti dignissimos aperiam aspernatur eligendi
+              recusandae iste possimus quos. Ex accusantium, impedit dolore
+              esse, iusto ut et assumenda dicta in velit at nam fugit voluptate
+              fugiat possimus. Neque sit numquam magni illo, magnam ab eligendi
+              dignissimos voluptatibus nisi. Tenetur iste magnam praesentium ea,
+              nihil, quidem nobis quibusdam maiores voluptatum nisi itaque
+              ipsam, vero ut cumque dolore enim libero iusto unde ipsum ex
+              voluptas? Fuga, obcaecati ex. Blanditiis quidem similique odio in
+              id deserunt assumenda vero.
+            </p>
+
+            <p className="lead text-center">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur quis natus sit porro reiciendis, facilis quia eum
+              maiores, repellendus ut recusandae sed ratione labore explicabo
+              eius expedita ab autem debitis. Tempore sit illo possimus,
+              deserunt sapiente voluptate repudiandae doloremque eum dolore
+              alias omnis nobis assumenda, hic nihil suscipit, amet ut.
             </p>
           </HomeContent>
         </div>
