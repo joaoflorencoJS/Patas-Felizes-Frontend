@@ -7,7 +7,7 @@ import registerCat from './imgs/registerCat.webp';
 
 export default function Register() {
   return (
-    <Main>
+    <Main className="container">
       <div>
         <img src={registerCat} alt="Gato branco da tela de registro" />
 

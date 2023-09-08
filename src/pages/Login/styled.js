@@ -10,7 +10,21 @@ export const Main = styled.main`
   gap: 10px;
   height: 100%;
   margin: 0 auto;
-  width: 340px;
+  min-width: 300px;
+  max-width: 340px;
+  margin-top: 70px;
+
+  @media (max-width: 330px) {
+    margin-top: 140px;
+
+    h2 {
+      font-size: 1.8em;
+    }
+
+    img {
+      display: none;
+    }
+  }
 
   .card {
     width: 100%;

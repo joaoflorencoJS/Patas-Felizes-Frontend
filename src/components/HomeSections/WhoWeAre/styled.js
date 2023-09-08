@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as colors from '../../../config/colors';
 
 export const LandingContainer = styled.section`
-  /* height: 100vh; */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +14,12 @@ export const HomeContent = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+
+  @media (max-width: 360px) {
+    h2 {
+      flex-direction: column;
+    }
+  }
 
   a {
     display: flex;

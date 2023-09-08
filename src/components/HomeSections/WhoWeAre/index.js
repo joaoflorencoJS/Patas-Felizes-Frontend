@@ -9,12 +9,12 @@ import {
 export default function LandingHomePageWhoWeAre() {
   return (
     <LandingContainer className="mb-0 pt-5 pb-5">
-      <div className="row container">
+      <div className="row container p-0">
         <HomeContent className="col-md text-center lead">
-          <h1 className="display-4">
+          <h2 className="d-flex align-items-center display-4">
             <SpanPrimaryColor className="mr-3">QUEM</SpanPrimaryColor>
             <SpanTerciaryColor>SOMOS?</SpanTerciaryColor>
-          </h1>
+          </h2>
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia

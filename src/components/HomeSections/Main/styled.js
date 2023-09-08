@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import * as colors from '../../../config/colors';
 
 export const LandingContainer = styled.section`
-  /* height: calc(90vh - 70px); */
   min-height: calc(90vh - 70px);
-  max-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +15,16 @@ export const HomeContent = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3.6em;
+    }
+  }
 
   a {
     display: flex;
@@ -53,6 +61,7 @@ export const DivImg = styled.div`
 `;
 
 export const Img = styled.img`
+  min-width: 100px;
   border-radius: 10px;
   border: 2px solid ${colors.terciaryColor};
 `;

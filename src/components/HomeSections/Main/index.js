@@ -17,7 +17,7 @@ export default function LandingHomePageMain() {
     <LandingContainer className="jumbotron mb-0 rounded-0">
       <div className="row">
         <HomeContent className="col-md">
-          <h1 className="d-flex flex-column align-items-center text-center display-3">
+          <h1 className="d-flex flex-column align-items-center text-center mt-4">
             <SpanPrimaryColor>Patas Felizes</SpanPrimaryColor>
             <SpanTerciaryColor>Adoção e amor</SpanTerciaryColor>
           </h1>

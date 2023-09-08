@@ -17,6 +17,12 @@ export const Nav = styled.nav`
     gap: 5px;
   }
 
+  .navbar-brand {
+    @media (max-width: 360px) {
+      font-size: 1em;
+    }
+  }
+
   .navbar-collapse {
     transition: all 300ms;
   }
