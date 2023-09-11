@@ -1,12 +1,28 @@
 import styled from 'styled-components';
 import * as colors from '../../../config/colors';
+import bgMainPage from './imgs/bgMainPage.webp';
 
 export const LandingContainer = styled.section`
-  min-height: calc(90vh - 70px);
+  min-height: calc(100vh);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 70px;
+  /* margin-top: 70px; */
+
+  background: url(${bgMainPage}) no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  z-index: 998;
+
+  @media (max-width: 768px) {
+    > div {
+      gap: 28px;
+    }
+  }
 `;
 
 export const HomeContent = styled.div`

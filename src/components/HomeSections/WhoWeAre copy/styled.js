@@ -5,15 +5,17 @@ import bgMainPage from './imgs/bgMainPage.webp';
 export const LandingContainer = styled.section`
   /* background: url(${bgMainPage}) no-repeat; */
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
 
+  border-top: 5px solid #cdcdcd;
+
   position: sticky;
   top: 0;
-  z-index: 999;
-  overflow-y: auto;
+  bottom: 200vh;
+  z-index: 1000;
 
   > div {
     width: 100%;

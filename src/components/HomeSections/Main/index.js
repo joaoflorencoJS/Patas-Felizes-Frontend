@@ -9,12 +9,12 @@ import {
   SpanPrimaryColor,
   SpanTerciaryColor,
 } from './styled';
-import homeCat from './imgs/homeCat150.webp';
-import homeDog from './imgs/homeDog150.webp';
+import homeCat from './imgs/homeCat250.webp';
+import homeDog from './imgs/homeDog250.webp';
 
 export default function LandingHomePageMain() {
   return (
-    <LandingContainer className="jumbotron mb-0 rounded-0">
+    <LandingContainer className="jumbotron mb-0 rounded-0" id="main">
       <div className="row">
         <HomeContent className="col-md">
           <h1 className="d-flex flex-column align-items-center text-center mt-4">
@@ -34,10 +34,10 @@ export default function LandingHomePageMain() {
           </DivImg>
 
           <p className="lead text-justify">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate
-            atque repudiandae facere delectus at unde dolorum, veniam assumenda
-            vel soluta labore facilis laboriosam? Delectus odit non expedita,
-            illo culpa fuga.
+            Patas felizes é um site voltado aos futuros ou atuais pais de
+            pet&apos;s. Com uma página onde podem adotar um animalzinho. Uma
+            onde pode fazer denúncias de maltratos e por último uma pagina com
+            informações de como cuidar melhor do seu pet.
           </p>
         </HomeContent>
       </div>
