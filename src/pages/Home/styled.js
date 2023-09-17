@@ -8,6 +8,16 @@ export const LandingContainer = styled.section`
   align-items: center;
 `;
 
+export const Container = styled.article`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  section + section {
+    border-top: 5px solid #cdcdcd;
+  }
+`;
+
 export const SpanPrimaryColor = styled.span`
   color: ${colors.primaryColor};
   letter-spacing: 4px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../../styles/GlobalStyles';
+import { Container } from './styled';
 import LandingHomePageMain from '../../components/HomeSections/Main';
 import LandingHomePageWhoWeAre from '../../components/HomeSections/WhoWeAre';
 import LandingHomePageWhoWeAre2 from '../../components/HomeSections/WhoWeAre copy';

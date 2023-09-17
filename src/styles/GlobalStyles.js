@@ -12,12 +12,11 @@ export default createGlobalStyle`
 }
 
 html, body, #root {
-  height: 100%;
+  /* height: 100%; */
 }
 
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  /* background: ${colors.primaryDarkColor}; */
   color: ${colors.primaryDarkColor};
 }
 

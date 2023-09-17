@@ -4,19 +4,21 @@ import bgMainPage from './imgs/bgMainPage.webp';
 
 export const LandingContainer = styled.section`
   min-height: calc(100vh);
+  min-height: calc(var(--vh, 1vh) * 100 - 70px);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 70px; */
 
   background: url(${bgMainPage}) no-repeat;
   background-size: cover;
   background-position: center;
 
-  position: sticky;
-  top: 0;
-  bottom: 0;
-  z-index: 998;
+  @media (min-width: 992px) {
+    position: sticky;
+    top: 70px;
+    z-index: 998;
+  }
 
   @media (max-width: 768px) {
     > div {

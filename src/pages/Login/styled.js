@@ -8,15 +8,12 @@ export const Main = styled.main`
   justify-content: center;
   flex-direction: column;
   gap: 10px;
-  height: 100%;
-  margin: 0 auto;
+
+  height: calc(var(--vh, 1vh) * 100 - 70px);
   min-width: 300px;
-  max-width: 340px;
-  margin-top: 70px;
+  max-width: 390px;
 
   @media (max-width: 330px) {
-    margin-top: 140px;
-
     h2 {
       font-size: 1.8em;
     }
@@ -34,6 +31,36 @@ export const Main = styled.main`
     }
   }
 
+  a {
+    color: ${colors.linkColor};
+  }
+`;
+
+export const LogoLink = styled(Link)`
+  filter: none;
+
+  &:hover {
+    filter: none;
+  }
+`;
+
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  img {
+    width: 150px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
   label {
     display: flex;
     flex-direction: column;
@@ -41,16 +68,6 @@ export const Main = styled.main`
 
   button {
     width: 100%;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  a {
-    color: ${colors.linkColor};
   }
 
   input {
@@ -62,17 +79,5 @@ export const Main = styled.main`
     &:focus {
       border: 1px solid ${colors.pink4};
     }
-  }
-
-  img {
-    width: 150px;
-  }
-`;
-
-export const LogoLink = styled(Link)`
-  filter: none;
-
-  &:hover {
-    filter: none;
   }
 `;

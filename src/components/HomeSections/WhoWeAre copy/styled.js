@@ -10,8 +10,6 @@ export const LandingContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  border-top: 5px solid #cdcdcd;
-
   position: sticky;
   top: 0;
   bottom: 200vh;

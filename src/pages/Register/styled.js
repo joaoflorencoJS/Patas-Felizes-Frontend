@@ -6,46 +6,11 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
-  min-width: 300px;
-  max-width: 390px;
   gap: 10px;
-  margin-top: 70px;
 
-  h2 {
-    text-align: center;
-  }
-
-  div {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-left: -30px;
-    margin-bottom: -70px;
-
-    img {
-      min-width: 100px;
-      max-width: 150px;
-    }
-
-    h2 {
-      margin-bottom: 70px;
-    }
-  }
-
-  @media (max-width: 390px) {
-    img {
-      display: none;
-    }
-
-    div {
-      margin-left: 0px;
-    }
-  }
-
-  @media (max-width: 330px) {
-    margin-top: 140px;
-  }
+  height: calc(var(--vh, 1vh) * 100 - 70px);
+  min-width: 300px;
+  max-width: 650px;
 
   .card {
     width: 100%;
@@ -54,6 +19,48 @@ export const Main = styled.main`
       margin: 0;
     }
   }
+
+  a {
+    color: ${colors.linkColor};
+  }
+`;
+
+export const Article = styled.article`
+  width: 100%;
+  display: flex;
+  gap: 20px;
+`;
+
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: -70px;
+
+  img {
+    min-width: 100px;
+    max-width: 150px;
+    /* margin-left: -100px; */
+  }
+
+  h2 {
+    margin-bottom: 70px;
+    text-align: center;
+  }
+
+  @media (max-width: 390px) {
+    img {
+      display: none;
+    }
+
+    margin-left: 0px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   label {
     display: flex;
@@ -64,16 +71,6 @@ export const Main = styled.main`
     width: 100%;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  a {
-    color: ${colors.linkColor};
-  }
-
   input {
     padding: 0 10px;
     font-size: 1.1em;
@@ -82,6 +79,7 @@ export const Main = styled.main`
 
     &:focus {
       border: 1px solid ${colors.pink4};
+      box-shadow: 0px 0px 10px ${colors.pink4};
     }
   }
 `;

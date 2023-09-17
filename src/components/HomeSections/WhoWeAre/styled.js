@@ -10,10 +10,11 @@ export const LandingContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  overflow-y: auto;
+  @media (min-width: 992px) {
+    position: sticky;
+    top: 35px;
+    z-index: 999;
+  }
 
   > div {
     width: 100%;

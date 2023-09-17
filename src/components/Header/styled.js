@@ -18,7 +18,7 @@ export const Nav = styled.nav`
   }
 
   .navbar-brand {
-    @media (max-width: 360px) {
+    @media (max-width: 400px) {
       font-size: 1em;
     }
   }
