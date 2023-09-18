@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { mask } from 'remask';
-import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { Container } from '../../styles/GlobalStyles';
 import { Article, Form, Header, Main } from './styled';
 import registerCat from './imgs/registerCat.webp';
+import HandlePasswordEye from '../../components/HandlePasswordEye';
 
 export default function Register() {
   // Dados do Usuário
@@ -19,22 +19,6 @@ export default function Register() {
   const [OngPassword, setOngPassword] = useState('');
   const [typeButtonUser, setTypeButtonUser] = useState('password');
   const [typeButtonOng, setTypeButtonOng] = useState('password');
-  const activeEyeUser = document.querySelectorAll[4];
-  const slashedEyeUser = document.querySelectorAll[4];
-  const activeEyeOng = document.querySelectorAll[4];
-  const slashedEyeOng = document.querySelectorAll[4];
-
-  const handleEye = (typeButton, setTypeButton, activeEye, slashedEye) => {
-    if (typeButton === 'password') {
-      setTypeButton('text');
-      activeEye.setAttribute('display', 'none');
-      slashedEye.setAttribute('display', 'initial');
-    } else {
-      setTypeButton('password');
-      activeEye.setAttribute('display', 'initial');
-      slashedEye.setAttribute('display', 'none');
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,19 +66,12 @@ export default function Register() {
             <label htmlFor="userPassword">
               <div>
                 Insira a sua senha
-                <button
-                  type="button"
-                  className="btn btn-link"
-                  onClick={handleEye(
-                    typeButtonUser,
-                    setTypeButtonUser,
-                    activeEyeUser,
-                    slashedEyeUser
-                  )}
-                >
-                  <FaEye size={20} />
-                  <FaEyeSlash size={20} display="none" />
-                </button>
+                <HandlePasswordEye
+                  idActiveEye="activeEyeUser"
+                  idSlashedEye="slashedEyeUser"
+                  typeButton={typeButtonUser}
+                  setTypeButton={setTypeButtonUser}
+                />
               </div>
               <input
                 type={typeButtonUser}
@@ -142,19 +119,12 @@ export default function Register() {
             <label htmlFor="OngPassword">
               <div>
                 Insira a sua senha
-                <button
-                  type="button"
-                  className="btn btn-link"
-                  onClick={handleEye(
-                    typeButtonOng,
-                    setTypeButtonOng,
-                    activeEyeOng,
-                    slashedEyeOng
-                  )}
-                >
-                  <FaEye size={20} />
-                  <FaEyeSlash size={20} display="none" />
-                </button>
+                {/* <HandlePasswordEye
+                  idActiveEye="activeEyeOng"
+                  idSlashedEye="slashedEyeOng"
+                  typeButton={typeButtonOng}
+                  setTypeButton={setTypeButtonOng}
+                /> */}
               </div>
               <input
                 type={typeButtonOng}
