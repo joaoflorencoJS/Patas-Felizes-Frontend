@@ -9,19 +9,9 @@ export const Main = styled.main`
   flex-direction: column;
   gap: 10px;
 
-  height: calc(var(--vh, 1vh) * 100 - 70px);
+  min-height: calc(100vh - 70px);
   min-width: 300px;
   max-width: 390px;
-
-  @media (max-width: 330px) {
-    h2 {
-      font-size: 1.8em;
-    }
-
-    img {
-      display: none;
-    }
-  }
 
   .card {
     width: 100%;
@@ -78,6 +68,7 @@ export const Form = styled.form`
 
     &:focus {
       border: 1px solid ${colors.pink4};
+      box-shadow: 0px 0px 10px ${colors.pink4};
     }
   }
 `;

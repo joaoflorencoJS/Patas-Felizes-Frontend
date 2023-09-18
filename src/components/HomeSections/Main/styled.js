@@ -3,8 +3,7 @@ import * as colors from '../../../config/colors';
 import bgMainPage from './imgs/bgMainPage.webp';
 
 export const LandingContainer = styled.section`
-  min-height: calc(100vh);
-  min-height: calc(var(--vh, 1vh) * 100 - 70px);
+  min-height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
@@ -14,7 +13,7 @@ export const LandingContainer = styled.section`
   background-size: cover;
   background-position: center;
 
-  @media (min-width: 992px) {
+  @media (min-height: 729.98px) and (min-width: 767.98px) {
     position: sticky;
     top: 70px;
     z-index: 998;

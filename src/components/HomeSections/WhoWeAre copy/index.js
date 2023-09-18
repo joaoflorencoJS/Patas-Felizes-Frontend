@@ -6,9 +6,9 @@ import {
   SpanTerciaryColor,
 } from './styled';
 
-export default function LandingHomePageWhoWeAre2() {
+export default function LandingHomePageWhoWeAre() {
   return (
-    <LandingContainer className="mb-0">
+    <LandingContainer className="mb-0" id="whoWeAre1">
       <div className="pt-5 pb-5">
         <div className="container">
           <HomeContent className="text-center lead">

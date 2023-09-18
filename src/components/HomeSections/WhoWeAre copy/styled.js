@@ -3,17 +3,17 @@ import * as colors from '../../../config/colors';
 import bgMainPage from './imgs/bgMainPage.webp';
 
 export const LandingContainer = styled.section`
-  /* background: url(${bgMainPage}) no-repeat; */
   width: 100%;
-  min-height: calc(100vh - 70px);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  position: sticky;
-  top: 0;
-  bottom: 200vh;
-  z-index: 1000;
+  @media (min-height: 729.98px) and (min-width: 767.98px) {
+    position: sticky;
+    top: 35px;
+    z-index: 1000;
+  }
 
   > div {
     width: 100%;
@@ -21,7 +21,7 @@ export const LandingContainer = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background: url(${bgMainPage}) no-repeat;
     background-size: cover;
     background-position: center;
   }

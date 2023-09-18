@@ -10,7 +10,7 @@ export const LandingContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  @media (min-width: 992px) {
+  @media (min-height: 729.98px) and (min-width: 767.98px) {
     position: sticky;
     top: 35px;
     z-index: 999;

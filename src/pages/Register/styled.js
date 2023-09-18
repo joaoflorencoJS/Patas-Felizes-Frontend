@@ -8,7 +8,7 @@ export const Main = styled.main`
   flex-direction: column;
   gap: 10px;
 
-  height: calc(var(--vh, 1vh) * 100 - 70px);
+  min-height: calc(100vh - 70px);
   min-width: 300px;
   max-width: 650px;
 
@@ -34,26 +34,32 @@ export const Article = styled.article`
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  gap: 25px;
+  justify-content: space-between;
+  /* gap: 25px; */
   margin-bottom: -70px;
+  width: 100%;
 
   img {
     min-width: 100px;
     max-width: 150px;
-    /* margin-left: -100px; */
+    margin-left: -30px;
   }
 
-  h2 {
-    margin-bottom: 70px;
-    text-align: center;
-  }
-
-  @media (max-width: 390px) {
+  /* @media (max-width: 390px) {
     img {
       display: none;
     }
 
     margin-left: 0px;
+  } */
+
+  div {
+    width: 100%;
+
+    h2 {
+      margin-bottom: 70px;
+      text-align: center;
+    }
   }
 `;
 
@@ -65,6 +71,18 @@ export const Form = styled.form`
   label {
     display: flex;
     flex-direction: column;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-direction: row;
+
+      button {
+        padding: 0;
+        width: auto;
+      }
+    }
   }
 
   button {
