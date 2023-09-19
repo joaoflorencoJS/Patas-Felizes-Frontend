@@ -1,31 +1,14 @@
 /* eslint-disable prefer-destructuring */
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { mask } from 'remask';
 import { Container } from '../../styles/GlobalStyles';
-import { Article, Form, Header, Main } from './styled';
+import { Article, Header, Main } from './styled';
 import registerCat from './imgs/registerCat.webp';
-import HandlePasswordEye from '../../components/HandlePasswordEye';
+import OngForm from '../../components/RegisterForms/OngForm ';
+import UserForm from '../../components/RegisterForms/UserForm';
 
 export default function Register() {
-  // Dados do Usuário
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassowrd, setUserPassword] = useState('');
-  // Dados da ONG
-  const [OngName, setOngName] = useState('');
-  const [OngCnpj, setOngCnpj] = useState('');
-  const [OngPassword, setOngPassword] = useState('');
-  const [typeButtonUser, setTypeButtonUser] = useState('password');
-  const [typeButtonOng, setTypeButtonOng] = useState('password');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log('teste');
-  };
-
   return (
     <Main className="container">
       <Header>
@@ -37,109 +20,9 @@ export default function Register() {
       </Header>
       <Article className="row">
         {/* Cadastro usuário */}
-        <Container className="card p-3 col-sm">
-          <h3>Criar conta usuário</h3>
-          <Form onSubmit={handleSubmit}>
-            <label htmlFor="userName">
-              Insira o seu nome
-              <input
-                type="text"
-                id="userName"
-                required
-                placeholder="Seu nome"
-                maxLength={100}
-                onChange={(e) => setUserName(e.target.value)}
-                value={userName}
-              />
-            </label>
-            <label htmlFor="userEmail">
-              Insira o seu endereço de e-mail
-              <input
-                type="email"
-                id="userEmail"
-                required
-                placeholder="Seu e-mail"
-                onChange={(e) => setUserEmail(e.target.value)}
-                value={userEmail}
-              />
-            </label>
-            <label htmlFor="userPassword">
-              <div>
-                Insira a sua senha
-                <HandlePasswordEye
-                  idActiveEye="activeEyeUser"
-                  idSlashedEye="slashedEyeUser"
-                  typeButton={typeButtonUser}
-                  setTypeButton={setTypeButtonUser}
-                />
-              </div>
-              <input
-                type={typeButtonUser}
-                id="userPassword"
-                required
-                placeholder="Sua senha"
-                minLength={6}
-                maxLength={60}
-                onChange={(e) => setUserPassword(e.target.value)}
-                value={userPassowrd}
-              />
-            </label>
-            <button type="submit">Registrar usuário</button>
-          </Form>
-        </Container>
+        <UserForm />
         {/* Cadastro ONG */}
-        <Container className="card p-3 col-sm">
-          <h3>Criar conta ONG</h3>
-          <Form onSubmit={handleSubmit}>
-            <label htmlFor="OngName">
-              Insira o seu nome
-              <input
-                type="text"
-                id="OngName"
-                required
-                placeholder="Nome da ONG"
-                maxLength={100}
-                onChange={(e) => setOngName(e.target.value)}
-                value={OngName}
-              />
-            </label>
-            <label htmlFor="OngCnpj">
-              Insira o seu CNPJ
-              <input
-                type="text"
-                id="OngCnpj"
-                placeholder="CPNJ da ONG"
-                required
-                onChange={(e) =>
-                  setOngCnpj(mask(e.target.value, ['99.999.999/9999-99']))
-                }
-                value={OngCnpj}
-              />
-            </label>
-            <label htmlFor="OngPassword">
-              <div>
-                Insira a sua senha
-                {/* <HandlePasswordEye
-                  idActiveEye="activeEyeOng"
-                  idSlashedEye="slashedEyeOng"
-                  typeButton={typeButtonOng}
-                  setTypeButton={setTypeButtonOng}
-                /> */}
-              </div>
-              <input
-                type={typeButtonOng}
-                id="OngPassword"
-                placeholder="Senha da ONG"
-                required
-                minLength={6}
-                maxLength={60}
-                onChange={(e) => setOngPassword(e.target.value)}
-                value={OngPassword}
-              />
-            </label>
-            <button type="submit">Registrar ONG</button>
-          </Form>
-        </Container>
+        <OngForm />
       </Article>
 
       <Container className="card p-3">

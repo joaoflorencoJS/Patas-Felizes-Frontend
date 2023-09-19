@@ -45,14 +45,6 @@ export const Header = styled.header`
     margin-left: -30px;
   }
 
-  /* @media (max-width: 390px) {
-    img {
-      display: none;
-    }
-
-    margin-left: 0px;
-  } */
-
   div {
     width: 100%;
 
@@ -76,7 +68,6 @@ export const Form = styled.form`
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      flex-direction: row;
 
       button {
         padding: 0;

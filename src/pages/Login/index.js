@@ -7,10 +7,12 @@ import { mask, unMask } from 'remask';
 import { Container } from '../../styles/GlobalStyles';
 import { Form, Header, LogoLink, Main } from './styled';
 import LogoPatasFelizes from './imgs/LogoPatasFelizes.webp';
+import HandlePasswordEye from '../../components/HandlePasswordEye';
 
 export default function Login() {
   const [emailCNPJ, setEmailCNPJ] = useState('');
   const [password, setPassword] = useState('');
+  const [typeButtonLogin, setTypeButtonLogin] = useState('password');
 
   const handleEmailCPNJ = (e) => {
     if (isInt(unMask(e.target.value))) {
@@ -22,24 +24,24 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let formErros = false;
+    let formErrors = false;
 
     if (isInt(unMask(emailCNPJ))) {
       if (unMask(emailCNPJ).length < 14) {
-        formErros = true;
-        toast.error('E-mail ou CNPJ inválido');
+        formErrors = true;
+        toast.error('E-mail ou CNPJ inválido.');
       }
     } else if (!isEmail(emailCNPJ)) {
-      formErros = true;
-      toast.error('E-mail ou CNPJ inválido');
+      formErrors = true;
+      toast.error('E-mail ou CNPJ inválido.');
     }
 
     if (password.length < 8 || password.length > 60) {
-      formErros = true;
-      toast.error('Senha inválida');
+      formErrors = true;
+      toast.error('Senha inválida.');
     }
 
-    if (formErros) return;
+    if (formErrors) return;
 
     toast.success('Logado com sucesso');
   };
@@ -61,18 +63,30 @@ export default function Login() {
             <input
               type="text"
               id="email"
+              required
               placeholder="Email ou CNPJ"
               onChange={handleEmailCPNJ}
               value={emailCNPJ}
             />
           </label>
           <label htmlFor="password">
-            Entre com a sua senha
+            <div>
+              Entre com a sua senha
+              <HandlePasswordEye
+                idActiveEye="activeEyeLogin"
+                idSlashedEye="slashedEyeLogin"
+                typeButton={typeButtonLogin}
+                setTypeButton={setTypeButtonLogin}
+              />
+            </div>
             <input
-              type="password"
+              type={typeButtonLogin}
               id="password"
-              onChange={(e) => setPassword(e.target.value)}
+              required
               placeholder="Entrar com senha"
+              maxLength={60}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
             />
           </label>
           <button type="submit">Entrar</button>

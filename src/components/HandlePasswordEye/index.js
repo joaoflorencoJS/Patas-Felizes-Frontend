@@ -8,20 +8,21 @@ export default function HandlePasswordEye({
   typeButton,
   setTypeButton,
 }) {
-  const activeEye = document.getElementById(`${idActiveEye}`);
-  const slashedEye = document.getElementById(`${idSlashedEye}`);
-
-  console.log(activeEye, slashedEye);
-
   const handleEye = () => {
     if (typeButton === 'password') {
       setTypeButton('text');
-      activeEye.setAttribute('display', 'none');
-      slashedEye.setAttribute('display', 'initial');
+      document.getElementById(`${idActiveEye}`).setAttribute('display', 'none');
+      document
+        .getElementById(`${idSlashedEye}`)
+        .setAttribute('display', 'initial');
     } else {
       setTypeButton('password');
-      activeEye.setAttribute('display', 'initial');
-      slashedEye.setAttribute('display', 'none');
+      document
+        .getElementById(`${idActiveEye}`)
+        .setAttribute('display', 'initial');
+      document
+        .getElementById(`${idSlashedEye}`)
+        .setAttribute('display', 'none');
     }
   };
   return (
