@@ -19,7 +19,7 @@ export default function UserForm() {
 
     if (!isEmail(userEmail)) {
       formErrors = true;
-      toast.error('Insira um e-mail válido.');
+      toast.error('E-mail inválido.');
     }
 
     if (userPassword.length < 8 || userPassword.length > 60) {

@@ -19,7 +19,7 @@ export default function OngForm() {
 
     if (unMask(OngCnpj).length < 14) {
       formErrors = true;
-      toast.error('CNPJ inválido!');
+      toast.error('CNPJ inválido.');
     }
 
     if (OngPassword.length < 8 || OngPassword.length > 60) {
