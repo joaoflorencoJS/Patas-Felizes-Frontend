@@ -1,6 +1,7 @@
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
+
 import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
 import persistedReducers from './modules/reduxPersist';

@@ -4,12 +4,18 @@ import { Link } from 'react-router-dom';
 import { isEmail, isInt } from 'validator';
 import { toast } from 'react-toastify';
 import { mask, unMask } from 'remask';
+import { useDispatch } from 'react-redux';
+import { get } from 'lodash';
 import { Container } from '../../styles/GlobalStyles';
 import { Form, Header, LogoLink, Main } from './styled';
 import LogoPatasFelizes from './imgs/LogoPatasFelizes.webp';
 import HandlePasswordEye from '../../components/HandlePasswordEye';
+import * as actions from '../../store/modules/auth/actions';
 
-export default function Login() {
+export default function Login(props) {
+  const dispatch = useDispatch();
+  const prevPath = get(props, 'location.state.prevPath', '/');
+
   const [emailCNPJ, setEmailCNPJ] = useState('');
   const [password, setPassword] = useState('');
   const [typeButtonLogin, setTypeButtonLogin] = useState('password');
@@ -43,7 +49,7 @@ export default function Login() {
 
     if (formErrors) return;
 
-    toast.success('Logado com sucesso');
+    dispatch(actions.authRequest({ emailCNPJ, password, prevPath }));
   };
 
   return (
