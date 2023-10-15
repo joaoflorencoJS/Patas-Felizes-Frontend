@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 import { isEmail, isInt } from 'validator';
 import { toast } from 'react-toastify';
 import { mask, unMask } from 'remask';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { get } from 'lodash';
 import { Container } from '../../styles/GlobalStyles';
 import { Form, Header, LogoLink, Main } from './styled';
 import LogoPatasFelizes from './imgs/LogoPatasFelizes.webp';
 import HandlePasswordEye from '../../components/HandlePasswordEye';
 import * as actions from '../../store/modules/auth/actions';
+import Loading from '../../components/Loading';
 
 export default function Login(props) {
   const dispatch = useDispatch();
   const prevPath = get(props, 'location.state.prevPath', '/');
+  const isLoading = useSelector((state) => state.auth.isLoading);
 
   const [emailCNPJ, setEmailCNPJ] = useState('');
   const [password, setPassword] = useState('');
@@ -54,6 +56,7 @@ export default function Login(props) {
 
   return (
     <Main className="container">
+      <Loading isLoading={isLoading} />
       <Header>
         <LogoLink to="/">
           <img src={LogoPatasFelizes} alt="Logo do Patas Felizes" />

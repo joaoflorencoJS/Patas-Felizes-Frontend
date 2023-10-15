@@ -28,7 +28,6 @@ function* authRequest({ payload }) {
     history.push(payload.prevPath);
   } catch (error) {
     toast.error('Usuário ou senha inválidos');
-    console.log(error);
 
     yield put(actions.authFailure());
   }

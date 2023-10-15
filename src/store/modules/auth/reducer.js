@@ -17,6 +17,13 @@ export default function reducer(state = initialState, action) {
       const newState = { ...state };
       newState.isLoggedIn = true;
       newState.token = action.payload.token;
+      newState.isLoading = false;
+
+      return newState;
+    }
+    case types.AUTH_REQUEST: {
+      const newState = { ...state };
+      newState.isLoading = true;
 
       return newState;
     }
