@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'PATAS-FELIZES',
       storage,
-      whitelist: ['auth'],
+      whitelist: ['auth', 'register'],
     },
     reducers
   );

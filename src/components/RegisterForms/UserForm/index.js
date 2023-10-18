@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import isEmail from 'validator/lib/isEmail';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../../styles/GlobalStyles';
 import { Form } from '../styled';
 import HandlePasswordEye from '../../HandlePasswordEye';
+import * as actions from '../../../store/modules/register/actions';
 
 export default function UserForm() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -34,7 +39,14 @@ export default function UserForm() {
 
     if (formErrors) return;
 
-    toast.success('Cadastrado com sucesso!');
+    dispatch(
+      actions.registerUserRequest({
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+        isLoggedIn,
+      })
+    );
   };
 
   return (

@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { mask, unMask } from 'remask';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../../styles/GlobalStyles';
 import { Form } from '../styled';
 import HandlePasswordEye from '../../HandlePasswordEye';
+import * as actions from '../../../store/modules/register/actions';
 
 export default function OngForm() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const [OngName, setOngName] = useState('');
   const [OngCnpj, setOngCnpj] = useState('');
   const [OngPassword, setOngPassword] = useState('');
@@ -34,7 +39,14 @@ export default function OngForm() {
 
     if (formErrors) return;
 
-    toast.success('Cadastrado com sucesso!');
+    dispatch(
+      actions.registerOngRequest({
+        name: OngName,
+        cnpj: OngCnpj,
+        password: OngPassword,
+        isLoggedIn,
+      })
+    );
   };
 
   return (

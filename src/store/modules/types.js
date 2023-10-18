@@ -5,5 +5,15 @@ export const BOTAO_CLICADO_FAILURE = 'BOTAO_CLICADO_FAILURE';
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
+// register types
+// // ong types
+export const REGISTER_ONG_REQUEST = 'REGISTER_ONG_REQUEST';
+export const REGISTER_ONG_SUCCESS = 'REGISTER_ONG_SUCCESS';
+export const REGISTER_ONG_FAILURE = 'REGISTER_ONG_FAILURE';
+// // user types
+export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
+export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
+export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
+
 // persist rehydrate types
 export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
