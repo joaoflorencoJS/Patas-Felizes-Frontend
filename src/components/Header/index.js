@@ -43,12 +43,12 @@ export default function Header() {
           {isLoggedIn ? (
             <>
               <li className="nav-item">
-                <Link to="/adocao" className="nav-link">
+                <Link to="/adote" className="nav-link">
                   Adoção
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/denuncia" className="nav-link">
+                <Link to="/denuncie" className="nav-link">
                   Denunciar
                 </Link>
               </li>
