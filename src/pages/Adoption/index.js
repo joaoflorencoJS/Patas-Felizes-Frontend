@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { Link } from 'react-router-dom';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
+import PostForm from '../../components/PostForm';
+import { Section } from './styled';
 
 export default function Adoption() {
   const [posts, setPosts] = useState([]);
@@ -23,35 +26,8 @@ export default function Adoption() {
 
   const handleCreatePost = async () => {
     MySwal.fire({
-      title: <p>Hello World</p>,
-      html: (
-        <div>
-          <label htmlFor="swal-input1">
-            Título
-            <input
-              id="swal-input1"
-              className="swal2-input"
-              placeholder="Título"
-            />
-          </label>
-          <label htmlFor="swal-input2">
-            Conteúdo
-            <input
-              id="swal-input2"
-              className="swal2-input"
-              placeholder="Conteúdo"
-            />
-          </label>
-        </div>
-      ),
-
-      // html: `
-      // <label for="swal-input1">Título
-      //   <input id="swal-input1" class="swal2-input" placeholder="Título">
-      // </label>
-      // <label for="swal-input2">Conteúdo
-      //   <input id="swal-input2" class="swal2-input" placeholder="Conteúdo">
-      // </label>`,
+      html: <PostForm MySwal={MySwal} />,
+      showConfirmButton: false,
     });
   };
 
@@ -64,16 +40,21 @@ export default function Adoption() {
           Criar postagem
         </button>
       </div>
-      <div>
-        <h1>posts</h1>
+      <h1>posts</h1>
+      <Section className="row m-0 container">
         {posts.map((post) => (
-          <div key={post.id}>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
-            {/* <img src={post.url} alt="" /> */}
+          <div key={post.id} className="col-sm-6 col-md-4 col-lg-3 p-2">
+            <div className="card">
+              {/* <img className="card-img-top" src={post.url} alt="" /> */}
+              <div className="card-body">
+                <h5 className="card-title">{post.title}</h5>
+                <p>{post.content}</p>
+                <Link to={`/post/${post.id}/show`}>Ver mais</Link>
+              </div>
+            </div>
           </div>
         ))}
-      </div>
+      </Section>
     </Container>
   );
 }

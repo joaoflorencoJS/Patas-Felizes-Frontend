@@ -18,6 +18,7 @@ export default function Routes() {
       <MyRoute exact path="/info" component={Info} isClosed />
       <MyRoute exact path="/adote" component={Adoption} isClosed />
       <MyRoute exact path="/denuncie" component={Denunciation} isClosed />
+      <MyRoute exact path="/post/:id/show" component={Denunciation} isClosed />
       <MyRoute path="*" component={Page404} />
     </Switch>
   );
