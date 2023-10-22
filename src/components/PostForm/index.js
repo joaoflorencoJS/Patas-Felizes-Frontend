@@ -18,7 +18,7 @@ export default function PostForm({ MySwal }) {
     MySwal.close();
 
     if (image) {
-      return MySwal.fire({
+      MySwal.fire({
         title: 'Atenção! Imagem sendo processada!',
         text: 'Aguarde um momento! Uma imagem enviada pode demorar algum tempo para ser processada. Por favor, não feche o navegador.',
         html: (

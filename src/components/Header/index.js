@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { HiBars3 } from 'react-icons/hi2';
-import { FaSignInAlt } from 'react-icons/fa';
+import {
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUserAlt,
+  FaUserCircle,
+} from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
 import 'bootstrap';
@@ -10,6 +15,7 @@ import history from '../../services/history';
 
 export default function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { id } = useSelector((state) => state.auth.userOrOng);
   const dispatch = useDispatch();
 
   const handleLogout = (e) => {
@@ -58,9 +64,40 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link onClick={handleLogout} to="/" className="nav-link">
-                  Sair
-                </Link>
+                <div className="dropdown">
+                  <button
+                    type="button"
+                    // className="dropdown-toggle"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <FaUserAlt size={28} />
+                  </button>
+                  <div
+                    className="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <Link className="dropdown-item" to={`/user/${id}/`}>
+                      <FaUserCircle size={22} /> Seu Perfil
+                    </Link>
+                    <Link className="dropdown-item" to="/">
+                      Another action
+                    </Link>
+                    <Link className="dropdown-item" to="/">
+                      Something else here
+                    </Link>
+                    <div className="dropdown-divider" />
+                    <Link
+                      onClick={handleLogout}
+                      to="/"
+                      className="dropdown-item"
+                    >
+                      <FaSignOutAlt size={22} /> Sair
+                    </Link>
+                  </div>
+                </div>
               </li>
             </>
           ) : (

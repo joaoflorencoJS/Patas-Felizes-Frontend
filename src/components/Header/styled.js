@@ -35,4 +35,9 @@ export const Nav = styled.nav`
       outline: none;
     }
   }
+
+  button {
+    padding: 0.375rem 0.75rem;
+    background: none;
+  }
 `;

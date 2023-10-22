@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
@@ -17,9 +18,13 @@ export default function Adoption() {
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const { data } = await axios.get('/posts');
-      setPosts(data);
-      console.log(data);
+      try {
+        const { data } = await axios.get('/posts');
+        setPosts(data);
+        console.log(data);
+      } catch (error) {
+        toast.error('Erro ao carregar os posts.');
+      }
       setIsLoading(false);
     })();
   }, []);
