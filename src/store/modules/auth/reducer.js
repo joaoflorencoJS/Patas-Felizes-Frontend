@@ -5,7 +5,8 @@ const initialState = {
   isLoggedIn: false,
   token: false,
   isLoading: false,
-  userOrOng: {},
+  user: {},
+  ong: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -18,6 +19,13 @@ export default function reducer(state = initialState, action) {
       const newState = { ...state };
       newState.isLoggedIn = true;
       newState.token = action.payload.token;
+      if (action.payload.user) {
+        newState.user = action.payload.user;
+        delete newState.ong;
+      } else {
+        newState.ong = action.payload.ong;
+        delete newState.user;
+      }
       newState.isLoading = false;
 
       return newState;

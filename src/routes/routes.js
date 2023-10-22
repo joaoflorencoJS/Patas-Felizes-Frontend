@@ -8,6 +8,7 @@ import Register from '../pages/Register';
 import Info from '../pages/Info';
 import Adoption from '../pages/Adoption';
 import Denunciation from '../pages/Denunciation';
+import Post from '../pages/Post';
 
 export default function Routes() {
   return (
@@ -18,7 +19,7 @@ export default function Routes() {
       <MyRoute exact path="/info" component={Info} isClosed />
       <MyRoute exact path="/adote" component={Adoption} isClosed />
       <MyRoute exact path="/denuncie" component={Denunciation} isClosed />
-      <MyRoute exact path="/post/:id/show" component={Denunciation} isClosed />
+      <MyRoute exact path="/post/:id/show" component={Post} isClosed />
       <MyRoute path="*" component={Page404} />
     </Switch>
   );

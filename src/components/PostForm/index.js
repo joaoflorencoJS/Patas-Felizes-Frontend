@@ -15,6 +15,12 @@ export default function PostForm({ MySwal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (title.length < 3 || content.length < 3) {
+      return toast.error(
+        'Título e o conteúdo da postagem são campos obrigatórios.'
+      );
+    }
+
     MySwal.close();
 
     if (image) {

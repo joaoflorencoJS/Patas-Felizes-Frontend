@@ -15,7 +15,9 @@ import history from '../../services/history';
 
 export default function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const { id } = useSelector((state) => state.auth.userOrOng);
+  const user = useSelector((state) => state.auth.user);
+  const ong = useSelector((state) => state.auth.ong);
+  const { id } = user || ong;
   const dispatch = useDispatch();
 
   const handleLogout = (e) => {
@@ -79,7 +81,10 @@ export default function Header() {
                     className="dropdown-menu dropdown-menu-right"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <Link className="dropdown-item" to={`/user/${id}/`}>
+                    <Link
+                      className="dropdown-item"
+                      to={user ? `/user/${id}/` : `/ong/${id}`}
+                    >
                       <FaUserCircle size={22} /> Seu Perfil
                     </Link>
                     <Link className="dropdown-item" to="/">
