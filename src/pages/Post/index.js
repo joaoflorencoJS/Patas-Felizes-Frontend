@@ -6,6 +6,7 @@ import axios from '../../services/axios';
 import Loading from '../../components/Loading';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
+import { Section } from './styled';
 
 export default function Post({ match }) {
   const id = get(match, 'params.id', '');
@@ -60,12 +61,11 @@ export default function Post({ match }) {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      {post ? (
-        <section className="mt-2">
-          {/* <div className="col"> */}
+      {post && (
+        <Section className="mt-2">
           <div className="p-2">
             <div className="card">
-              {/* <img className="card-img-top" src={post.url} alt="" /> */}
+              <img className="card-img-top" src={post.url} alt="" />
               <div className="card-body">
                 <h1 className="card-title">{post.title}</h1>
                 <p>{post.content}</p>
@@ -73,10 +73,7 @@ export default function Post({ match }) {
               </div>
             </div>
           </div>
-          {/* </div> */}
-        </section>
-      ) : (
-        ''
+        </Section>
       )}
     </Container>
   );

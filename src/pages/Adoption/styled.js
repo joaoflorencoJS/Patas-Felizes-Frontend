@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const Section = styled.section`
+  h5,
   p {
     overflow: hidden;
     text-overflow: ellipsis;

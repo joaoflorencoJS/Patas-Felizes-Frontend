@@ -6,7 +6,7 @@ import { Form } from './styled';
 import axios from '../../services/axios';
 import Loading from '../Loading';
 
-export default function PostForm({ MySwal }) {
+export default function PostForm({ MySwal, setPosts, posts }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -14,42 +14,48 @@ export default function PostForm({ MySwal }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const errors = [];
 
-    if (title.length < 3 || content.length < 3) {
-      return toast.error(
-        'Título e o conteúdo da postagem são campos obrigatórios.'
+    if (!image)
+      errors.push(
+        'É necessário ter uma imagem do animal para concluir a postagem.'
       );
-    }
+
+    if (title.length < 3 || title.length > 150)
+      errors.push('O campo título deve conter entre 3 e 150 caracteres.');
+
+    if (content.length < 3 || content.length > 500)
+      errors.push('O campo conteúdo deve conter entre 3 e 500 caracteres.');
+
+    if (errors.length > 0) return errors.map((error) => toast.error(error));
 
     MySwal.close();
 
-    if (image) {
-      MySwal.fire({
-        title: 'Atenção! Imagem sendo processada!',
-        text: 'Aguarde um momento! Uma imagem enviada pode demorar algum tempo para ser processada. Por favor, não feche o navegador.',
-        html: (
-          <>
-            <p>
-              Aguarde um momento! Você enviou uma imagem e, por isso, pode
-              demorar algum tempo para ser processada. Por favor, não feche o
-              navegador até que receba a mensagem de confirmção.
-            </p>
-            <button type="button" onClick={() => MySwal.close()}>
-              Fechar
-            </button>
-          </>
-        ),
-        showConfirmButton: false,
-      });
-    }
+    MySwal.fire({
+      title: 'Atenção! Imagem sendo processada!',
+      text: 'Aguarde um momento! Uma imagem enviada pode demorar algum tempo para ser processada. Por favor, não feche o navegador.',
+      html: (
+        <>
+          <p>
+            Aguarde um momento! Você enviou uma imagem e, por isso, pode demorar
+            algum tempo para ser processada. Por favor, não feche o navegador
+            até que receba a mensagem de confirmção.
+          </p>
+          <button type="button" onClick={() => MySwal.close()}>
+            Fechar
+          </button>
+        </>
+      ),
+      showConfirmButton: false,
+    });
 
     try {
       setIsLoading(true);
-      const response = await axios.post('/posts', { title, content, image });
+      const { data } = await axios.post('/posts', { title, content, image });
 
       toast.success('Postagem criada com sucesso');
 
-      return console.log(response);
+      return setPosts([data, ...posts]);
     } catch (err) {
       const error = get(err, 'response.data.errors', '');
       if (error) return toast.error(error);
@@ -82,7 +88,6 @@ export default function PostForm({ MySwal }) {
           <input
             type="text"
             id="swal-input1"
-            // className="swal2-input"
             placeholder="Título"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
@@ -92,7 +97,6 @@ export default function PostForm({ MySwal }) {
           Conteúdo
           <textarea
             id="swal-input2"
-            // className="swal2-input"
             placeholder="Conteúdo"
             onChange={(e) => setContent(e.target.value)}
             value={content}
@@ -121,4 +125,6 @@ export default function PostForm({ MySwal }) {
 
 PostForm.propTypes = {
   MySwal: PropTypes.func.isRequired,
+  setPosts: PropTypes.func.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
