@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Section = styled.section`
   .card {
-    max-width: 500px;
+    /* max-width: 500px; */
   }
 
   .card-header {

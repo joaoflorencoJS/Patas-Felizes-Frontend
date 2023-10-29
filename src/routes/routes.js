@@ -9,6 +9,8 @@ import Info from '../pages/Info';
 import Adoption from '../pages/Adoption';
 import Denunciation from '../pages/Denunciation';
 import Post from '../pages/Post';
+import Ong from '../pages/Ong';
+import User from '../pages/User';
 
 export default function Routes() {
   return (
@@ -20,6 +22,8 @@ export default function Routes() {
       <MyRoute exact path="/adote" component={Adoption} isClosed />
       <MyRoute exact path="/denuncie" component={Denunciation} isClosed />
       <MyRoute exact path="/post/:id/show" component={Post} isClosed />
+      <MyRoute exact path="/ong/:id" component={Ong} isClosed />
+      <MyRoute exact path="/user/:id" component={User} isClosed />
       <MyRoute path="*" component={Page404} />
     </Switch>
   );

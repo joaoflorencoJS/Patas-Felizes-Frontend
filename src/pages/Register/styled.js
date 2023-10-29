@@ -29,6 +29,7 @@ export const Article = styled.article`
   width: 100%;
   display: flex;
   gap: 20px;
+  position: relative;
 `;
 
 export const Header = styled.header`

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LuLogIn } from 'react-icons/lu';
+import { useSelector } from 'react-redux';
 import {
   DivImg,
   HomeContent,
@@ -13,6 +14,8 @@ import homeCat from './imgs/homeCat250.webp';
 import homeDog from './imgs/homeDog250.webp';
 
 export default function LandingHomePageMain() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <LandingContainer className="jumbotron mb-0 rounded-0" id="main">
       <div className="row">
@@ -24,7 +27,7 @@ export default function LandingHomePageMain() {
 
           <Link to="/register" className="btn btn-lg">
             <LuLogIn size={24} />
-            Faça seu cadastro
+            {isLoggedIn ? 'Adote um animal' : 'Faça seu cadastro'}
           </Link>
         </HomeContent>
         <HomeContent className="col-md">

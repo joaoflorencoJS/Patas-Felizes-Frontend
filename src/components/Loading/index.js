@@ -6,8 +6,7 @@ export default function Loading({ isLoading }) {
   return (
     isLoading && (
       <Container>
-        <div />
-        <span>Carregando...</span>
+        <span className="loader" />
       </Container>
     )
   );
