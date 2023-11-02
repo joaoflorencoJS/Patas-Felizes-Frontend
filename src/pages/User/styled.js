@@ -5,10 +5,6 @@ export const Main = styled.main`
     margin: 0;
   }
 
-  .card {
-    /* max-width: 500px; */
-  }
-
   .card-header {
     display: flex;
     align-items: center;

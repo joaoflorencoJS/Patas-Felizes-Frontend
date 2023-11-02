@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
 import { Section } from './styled';
+import whenCreatedWas from '../../services/whenCreatedWas';
 
 export default function Post({ match }) {
   const id = get(match, 'params.id', '');
@@ -29,28 +31,7 @@ export default function Post({ match }) {
           delete data.user;
         }
 
-        const date = new Date(data.created_at);
-        const dateNow = new Date();
-
-        const diffNowPost = Math.floor((dateNow - date) / 1000 / 60);
-
-        let formattedDate;
-
-        if (diffNowPost / 60 >= 24) {
-          formattedDate = `postado há ${Math.floor(
-            diffNowPost / 60 / 24
-          )} dias atrás`;
-        } else if (diffNowPost >= 60) {
-          formattedDate = `postado há  ${Math.floor(
-            diffNowPost / 60
-          )} horas atrás`;
-        } else {
-          formattedDate = `postado há ${diffNowPost} minutos atrás`;
-        }
-
-        console.log(data);
-
-        data.created_at = formattedDate;
+        data.created_at = whenCreatedWas(data.created_at);
 
         setPost(data);
       } catch (errors) {
@@ -85,7 +66,17 @@ export default function Post({ match }) {
                   <FaUserCircle size={34} />
                 )}
                 <div>
-                  <h4 className="m-0">{ownerPost.name}</h4>
+                  <h4 className="m-0">
+                    <Link
+                      to={
+                        post.ong_id
+                          ? `/ong/${ownerPost.id}`
+                          : `/user/${ownerPost.id}`
+                      }
+                    >
+                      {ownerPost.name}
+                    </Link>
+                  </h4>
                   <p>{post.created_at}</p>
                 </div>
               </div>

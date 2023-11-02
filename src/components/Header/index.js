@@ -83,7 +83,7 @@ export default function Header() {
                   >
                     <Link
                       className="dropdown-item"
-                      to={user ? `/user/${id}/` : `/ong/${id}`}
+                      to={user ? `/user/${id}` : `/ong/${id}`}
                     >
                       <FaUserCircle size={22} /> Seu Perfil
                     </Link>

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Section = styled.section`
-  .card {
-    /* max-width: 500px; */
+export const Main = styled.main`
+  p {
+    margin: 0;
   }
 
   .card-header {
@@ -11,7 +11,8 @@ export const Section = styled.section`
     gap: 10px;
   }
 
-  p {
-    margin: 0;
+  .sticky {
+    position: sticky;
+    top: 80px;
   }
 `;

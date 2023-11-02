@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
 import Loading from '../../components/Loading';
 import { Main } from './styled';
+import whenCreatedWas from '../../services/whenCreatedWas';
 
 export default function User({ match }) {
   const id = get(match, 'params.id', '');
@@ -101,7 +103,14 @@ export default function User({ match }) {
                           ) : (
                             <FaUserCircle size={34} />
                           )}
-                          <h1 className="card-title m-0">{post.title}</h1>
+                          <div>
+                            <h4 className="card-title m-0">
+                              <Link to={`/post/${post.id}/show`}>
+                                {post.title}
+                              </Link>
+                            </h4>
+                            <p>{whenCreatedWas(post.created_at)}</p>
+                          </div>
                         </div>
                         <img className="card-img-top" src={post.url} alt="" />
                         <div className="card-body">
