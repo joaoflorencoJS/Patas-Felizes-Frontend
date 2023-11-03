@@ -7,6 +7,7 @@ import {
   FaUserAlt,
   FaUserCircle,
 } from 'react-icons/fa';
+import { BsHouseHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
 import 'bootstrap';
@@ -88,7 +89,7 @@ export default function Header() {
                       <FaUserCircle size={22} /> Seu Perfil
                     </Link>
                     <Link className="dropdown-item" to="/">
-                      Another action
+                      <BsHouseHeartFill size={22} /> Minhas doações
                     </Link>
                     <Link className="dropdown-item" to="/">
                       Something else here

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
@@ -90,7 +91,11 @@ export default function Ong({ match }) {
                             <FaUserCircle size={34} />
                           )}
                           <div>
-                            <h4 className="card-title m-0">{post.title}</h4>
+                            <h4 className="card-title m-0">
+                              <Link to={`/post/${post.id}/show`}>
+                                {post.title}
+                              </Link>
+                            </h4>
                             <p>{whenCreatedWas(post.created_at)}</p>
                           </div>
                         </div>

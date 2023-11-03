@@ -15,4 +15,13 @@ export const Main = styled.main`
     position: sticky;
     top: 80px;
   }
+
+  a {
+    color: #000;
+    transition: all 300ms;
+
+    &:hover {
+      color: #6c757d;
+    }
+  }
 `;

@@ -14,4 +14,13 @@ export const Section = styled.section`
   p {
     margin: 0;
   }
+
+  a {
+    color: #000;
+    transition: all 300ms;
+
+    &:hover {
+      color: #6c757d;
+    }
+  }
 `;

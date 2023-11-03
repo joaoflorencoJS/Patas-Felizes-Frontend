@@ -41,7 +41,6 @@ button {
 a {
   text-decoration: none;
   color: #fff;
-  transition: all 300ms;
 }
 
 button, a {
