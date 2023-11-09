@@ -4,18 +4,23 @@ import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
 import { Section } from './styled';
 import whenCreatedWas from '../../services/whenCreatedWas';
+import AdoptForm from '../../components/AdoptForm';
 
 export default function Post({ match }) {
   const id = get(match, 'params.id', '');
   const [post, setPost] = useState(null);
   const [ownerPost, setOwnerPost] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     (async () => {
@@ -49,6 +54,14 @@ export default function Post({ match }) {
     })();
   }, [id]);
 
+  const handleAdopt = async () => {
+    MySwal.fire({
+      html: <AdoptForm postId={post.id} isUser={!!ownerPost.cnpj} />,
+      showConfirmButton: false,
+      showCloseButton: true,
+    });
+  };
+
   return (
     <Container>
       <Loading isLoading={isLoading} />
@@ -65,19 +78,26 @@ export default function Post({ match }) {
                 ) : (
                   <FaUserCircle size={34} />
                 )}
-                <div>
-                  <h4 className="m-0">
-                    <Link
-                      to={
-                        post.ong_id
-                          ? `/ong/${ownerPost.id}`
-                          : `/user/${ownerPost.id}`
-                      }
-                    >
-                      {ownerPost.name}
-                    </Link>
-                  </h4>
-                  <p>{post.created_at}</p>
+                <div className="d-flex justify-content-between align-items-center w-100">
+                  <div>
+                    <h4 className="m-0">
+                      <Link
+                        to={
+                          post.ong_id
+                            ? `/ong/${ownerPost.id}`
+                            : `/user/${ownerPost.id}`
+                        }
+                      >
+                        {ownerPost.name}
+                      </Link>
+                    </h4>
+                    <p>{post.created_at}</p>
+                  </div>
+                  <div>
+                    <button type="button" onClick={handleAdopt}>
+                      Adotar
+                    </button>
+                  </div>
                 </div>
               </div>
               <img
