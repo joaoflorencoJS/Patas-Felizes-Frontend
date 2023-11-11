@@ -2,8 +2,30 @@ import React, { useState } from 'react';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import PropTypes from 'prop-types';
-import { mask } from 'remask';
+import { mask, unMask } from 'remask';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import isEmail from 'validator/lib/isEmail';
 import { Form } from './styled';
+import ValidaCPF from '../../services/ValidaCPF';
+import Loading from '../Loading';
+
+function calcAge(birthDate) {
+  const [year, month, day] = birthDate.split('-');
+  const today = new Date();
+  const birth = new Date(year, month - 1, day);
+  let age = today.getFullYear() - birth.getFullYear();
+  const birthMonth = today.getMonth() - birth.getMonth();
+
+  if (
+    birthMonth < 0 ||
+    (birthMonth === 0 && today.getDate() < birth.getDate())
+  ) {
+    age -= 1;
+  }
+
+  return age;
+}
 
 export default function AdoptForm({ postId, isUser }) {
   const MySwal = withReactContent(Swal);
@@ -19,17 +41,51 @@ export default function AdoptForm({ postId, isUser }) {
   const [addressState, setAddressState] = useState('');
   const [contactPhone, setContactPhone] = useState('');
   const [contactEmail, setContactEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   console.log(postId, isUser);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let formErrors = false;
+
+    if (calcAge(age) < 18) {
+      formErrors = true;
+      toast.error('Você precisa ter mais de 18 anos para adotar um pet.');
+    }
+
+    if (isUser) {
+      if (!ValidaCPF.validaCpf(unMask(cpf))) {
+        formErrors = true;
+      }
+    }
+
+    if (!contactPhone && !contactEmail) {
+      formErrors = true;
+      toast.error('Você precisa inserir, pelo menos, uma forma de contato.');
+    }
+
+    if (contactEmail && !isEmail(contactEmail)) {
+      formErrors = true;
+      toast.error('Você precisa inserir um E-mail válido.');
+    }
+
+    if (contactPhone && contactPhone.length < 15) {
+      formErrors = true;
+      toast.error('Você precisa inserir um número de telefone válido.');
+    }
+
+    if (formErrors) return;
+
+    console.log(calcAge(age));
 
     MySwal.close();
   };
 
   return (
     <>
+      <Loading isLoading={isLoading} />
       <h1>Formulário para adoção</h1>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="fullName">
@@ -63,6 +119,7 @@ export default function AdoptForm({ postId, isUser }) {
               id="cpf"
               placeholder="Insira seu CPF"
               value={cpf}
+              required
               onChange={(e) => setCpf(mask(e.target.value, ['999.999.999-99']))}
             />
           </label>
@@ -75,7 +132,73 @@ export default function AdoptForm({ postId, isUser }) {
             placeholder="Insira seu CEP"
             value={cep}
             required
-            onChange={(e) => setCep(mask(e.target.value, ['99999-999']))}
+            minLength={9}
+            maxLength={9}
+            onChange={async (e) => {
+              setCep(mask(e.target.value, ['99999-999']));
+
+              const onChangeCep = unMask(e.target.value);
+
+              if (onChangeCep.length === 8) {
+                setIsLoading(true);
+                try {
+                  const { data } = await axios.get(
+                    `https://viacep.com.br/ws/${onChangeCep}/json`
+                  );
+
+                  console.log(data);
+
+                  if (data.erro) {
+                    MySwal.fire({
+                      icon: 'question',
+                      title:
+                        'Você tem certeza que o CEP inserido está correto?',
+                      text: 'Caso o CEP esteja correto, atualize o banco de dados do ViaCep!',
+                      showConfirmButton: true,
+                      showDenyButton: true,
+                      denyButtonText: 'NÃO',
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        MySwal.fire({
+                          html: (
+                            <div>
+                              <iframe
+                                title="ViaCep"
+                                id="viacep-iframe"
+                                src="https://viacep.com.br/embed/"
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  border: '1px solid #888',
+                                  borderRadius: '5px',
+                                  background: '#fcfcfc',
+                                }}
+                              />
+                            </div>
+                          ),
+                        });
+                      } else if (result.isDenied) {
+                        MySwal.fire({
+                          html: <AdoptForm postId={postId} isUser={!!isUser} />,
+                          showConfirmButton: false,
+                          showCloseButton: true,
+                        });
+                      }
+                    });
+                    return;
+                  }
+
+                  setAddressStreet(data.logradouro);
+                  setAddressDistrict(data.bairro);
+                  setAddressCity(data.localidade);
+                  setAddressState(data.uf);
+                } catch (error) {
+                  console.log(error);
+                } finally {
+                  setIsLoading(false);
+                }
+              }
+            }}
           />
         </label>
         <div className="row m-0">

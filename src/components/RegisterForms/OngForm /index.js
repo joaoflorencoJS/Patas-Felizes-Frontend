@@ -6,6 +6,7 @@ import { Container } from '../../../styles/GlobalStyles';
 import { Form } from '../styled';
 import HandlePasswordEye from '../../HandlePasswordEye';
 import * as actions from '../../../store/modules/register/actions';
+import ValidaCNPJ from '../../../services/ValidaCNPJ';
 
 export default function OngForm() {
   const dispatch = useDispatch();
@@ -22,9 +23,8 @@ export default function OngForm() {
     e.preventDefault();
     let formErrors = false;
 
-    if (unMask(OngCnpj).length < 14) {
+    if (!ValidaCNPJ.validaCNPJ(unMask(OngCnpj))) {
       formErrors = true;
-      toast.error('CNPJ inválido.');
     }
 
     if (OngPassword.length < 8 || OngPassword.length > 60) {
