@@ -20,7 +20,6 @@ export default function Routes() {
       <MyRoute exact path="/register" component={Register} isClosedLoggedIn />
       <MyRoute exact path="/info" component={Info} isClosed />
       <MyRoute exact path="/adote" component={Adoption} isClosed />
-      <MyRoute exact path="/denuncie" component={Denunciation} isClosed />
       <MyRoute exact path="/post/:id/show" component={Post} isClosed />
       <MyRoute exact path="/ong/:id" component={Ong} isClosed />
       <MyRoute exact path="/user/:id" component={User} isClosed />

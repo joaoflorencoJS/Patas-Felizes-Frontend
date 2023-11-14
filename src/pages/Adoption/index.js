@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { GoPlus } from 'react-icons/go';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
@@ -44,12 +45,23 @@ export default function Adoption() {
       <Loading isLoading={isLoading} />
       <div>
         <h1>Adoção</h1>
-        <button type="button" onClick={handleCreatePost}>
-          Criar postagem
-        </button>
       </div>
-      <h1>posts</h1>
       <Section className="row m-0 container">
+        <div className="col-sm-6 col-md-4 col-lg-3 p-2">
+          <button
+            type="button"
+            onClick={handleCreatePost}
+            className="button-default"
+          >
+            <div className="card">
+              <GoPlus className="card-img-top" size="100%" />
+              <div className="card-body text-center">
+                <h5 className="card-title">Criar nova postagem</h5>
+                <p className="font-weight-normal">Para doar seu animalzinho!</p>
+              </div>
+            </div>
+          </button>
+        </div>
         {posts.map((post) => (
           <div key={post.id} className="col-sm-6 col-md-4 col-lg-3 p-2">
             <div className="card">

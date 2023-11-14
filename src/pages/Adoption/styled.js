@@ -24,4 +24,25 @@ export const Section = styled.section`
   a {
     color: ${colors.primaryColor};
   }
+
+  .button-default {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    color: #000;
+    border: 3px dashed ${colors.primaryColor};
+    transition: all ease 300ms;
+
+    .card {
+      border: none;
+    }
+
+    &:hover {
+      border: 3px solid ${colors.primaryColor};
+      background: #eee;
+    }
+  }
 `;

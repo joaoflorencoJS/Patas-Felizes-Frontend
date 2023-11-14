@@ -57,11 +57,6 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/denuncie" className="nav-link">
-                  Denunciar
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to="/info" className="nav-link">
                   Informações
                 </Link>
@@ -90,9 +85,6 @@ export default function Header() {
                     </Link>
                     <Link className="dropdown-item" to="/">
                       <BsHouseHeartFill size={22} /> Minhas doações
-                    </Link>
-                    <Link className="dropdown-item" to="/">
-                      Something else here
                     </Link>
                     <div className="dropdown-divider" />
                     <Link
