@@ -6,6 +6,8 @@ import { mask, unMask } from 'remask';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import isEmail from 'validator/lib/isEmail';
+import { get } from 'lodash';
+import myAxios from '../../services/axios';
 import { Form } from './styled';
 import ValidaCPF from '../../services/ValidaCPF';
 import Loading from '../Loading';
@@ -78,7 +80,33 @@ export default function AdoptForm({ postId, isUser }) {
 
     if (formErrors) return;
 
-    console.log(calcAge(age));
+    try {
+      await myAxios.post('/adopters', {
+        full_name: fullName,
+        age,
+        cpf: unMask(cpf),
+        cep: unMask(cep),
+        address_street: addressStreet,
+        address_district: addressDistrict,
+        address_number: addressNumber,
+        address_complement: addressComplement,
+        address_city: addressCity,
+        address_state: addressState,
+        contact_phone: unMask(contactPhone),
+        contact_email: contactEmail,
+        post_id: postId,
+      });
+
+      toast.success('Pedido de adoção enviado com sucesso!');
+    } catch (errors) {
+      const arrayErrors = get(errors, 'response.data.errors', '');
+
+      if (arrayErrors) {
+        arrayErrors.map((error) => toast.error(error));
+      } else {
+        toast.error('Erro ao enviar pedido de adoção.');
+      }
+    }
 
     MySwal.close();
   };
