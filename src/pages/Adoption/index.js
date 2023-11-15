@@ -47,26 +47,30 @@ export default function Adoption() {
         <h1>Adoção</h1>
       </div>
       <Section className="row m-0 container">
-        <div className="col-sm-6 col-md-4 col-lg-3 p-2">
-          <button
-            type="button"
-            onClick={handleCreatePost}
-            className="button-default"
-          >
-            <div className="card">
-              <GoPlus className="card-img-top" size="100%" />
-              <div className="card-body text-center">
-                <h5 className="card-title">Criar nova postagem</h5>
-                <p className="font-weight-normal">Para doar seu animalzinho!</p>
+        {posts && (
+          <div className="col-sm-6 col-md-4 col-lg-3 p-2">
+            <button
+              type="button"
+              onClick={handleCreatePost}
+              className="button-default"
+            >
+              <div className="card">
+                <GoPlus className="card-img-top" size="100%" />
+                <div className="card-body text-center">
+                  <h5 className="card-title">Criar nova postagem</h5>
+                  <p className="font-weight-normal">
+                    Para doar seu animalzinho!
+                  </p>
+                </div>
               </div>
-            </div>
-          </button>
-        </div>
+            </button>
+          </div>
+        )}
         {posts.map((post) => (
           <div key={post.id} className="col-sm-6 col-md-4 col-lg-3 p-2">
             <div className="card">
               <img className="card-img-top" src={post.url} alt="" />
-              <div className="card-body">
+              <div className="card-body border-top">
                 <h5 className="card-title">{post.title}</h5>
                 <p>{post.content}</p>
                 <Link to={`/post/${post.id}/show`}>Ver mais</Link>

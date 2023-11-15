@@ -7,10 +7,10 @@ import Home from '../pages/Home';
 import Register from '../pages/Register';
 import Info from '../pages/Info';
 import Adoption from '../pages/Adoption';
-import Denunciation from '../pages/Denunciation';
 import Post from '../pages/Post';
 import Ong from '../pages/Ong';
 import User from '../pages/User';
+import MyDonations from '../pages/MyDonations';
 
 export default function Routes() {
   return (
@@ -23,6 +23,20 @@ export default function Routes() {
       <MyRoute exact path="/post/:id/show" component={Post} isClosed />
       <MyRoute exact path="/ong/:id" component={Ong} isClosed />
       <MyRoute exact path="/user/:id" component={User} isClosed />
+      <MyRoute
+        exact
+        path="/ong/:id/minhas-doacoes"
+        component={MyDonations}
+        isClosedForUser
+        isClosed
+      />
+      <MyRoute
+        exact
+        path="/user/:id/minhas-doacoes"
+        component={MyDonations}
+        isClosedForUser
+        isClosed
+      />
       <MyRoute path="*" component={Page404} />
     </Switch>
   );

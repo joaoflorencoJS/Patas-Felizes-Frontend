@@ -83,7 +83,14 @@ export default function Header() {
                     >
                       <FaUserCircle size={22} /> Seu Perfil
                     </Link>
-                    <Link className="dropdown-item" to="/">
+                    <Link
+                      className="dropdown-item"
+                      to={
+                        user
+                          ? `/user/${id}/minhas-doacoes`
+                          : `/ong/${id}/minhas-doacoes`
+                      }
+                    >
                       <BsHouseHeartFill size={22} /> Minhas doações
                     </Link>
                     <div className="dropdown-divider" />

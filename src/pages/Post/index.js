@@ -39,6 +39,8 @@ export default function Post({ match }) {
         data.created_at = whenCreatedWas(data.created_at);
 
         setPost(data);
+
+        console.log(data);
       } catch (errors) {
         const error = get(errors, 'response.data.error', '');
 
@@ -91,7 +93,7 @@ export default function Post({ match }) {
                         {ownerPost.name}
                       </Link>
                     </h4>
-                    <p>{post.created_at}</p>
+                    <p className="font-italic text-muted">{post.created_at}</p>
                   </div>
                   <div>
                     <button type="button" onClick={handleAdopt}>
@@ -105,7 +107,7 @@ export default function Post({ match }) {
                 src={post.url}
                 alt="Foto do animal para doação"
               />
-              <div className="card-body">
+              <div className="card-body border-top">
                 <h3 className="card-title">{post.title}</h3>
                 <p className="card-text">{post.content}</p>
               </div>

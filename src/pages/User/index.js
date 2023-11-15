@@ -86,7 +86,6 @@ export default function User({ match }) {
                           blanditiis similique quod velit architecto tempora,
                           nisi itaque qui!
                         </p>
-                        <div>Scroll position: {scrollY}</div>
                       </div>
                     </div>
                   </div>
@@ -109,11 +108,13 @@ export default function User({ match }) {
                                 {post.title}
                               </Link>
                             </h4>
-                            <p>{whenCreatedWas(post.created_at)}</p>
+                            <p className="font-italic text-muted">
+                              {whenCreatedWas(post.created_at)}
+                            </p>
                           </div>
                         </div>
                         <img className="card-img-top" src={post.url} alt="" />
-                        <div className="card-body">
+                        <div className="card-body border-top">
                           <p className="card-text">{post.content}</p>
                         </div>
                       </div>
