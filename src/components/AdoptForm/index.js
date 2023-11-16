@@ -32,7 +32,7 @@ function calcAge(birthDate) {
 export default function AdoptForm({ postId, isUser }) {
   const MySwal = withReactContent(Swal);
   const [fullName, setFullName] = useState('');
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState(Date);
   const [cpf, setCpf] = useState('');
   const [cep, setCep] = useState('');
   const [addressStreet, setAddressStreet] = useState('');
@@ -45,7 +45,9 @@ export default function AdoptForm({ postId, isUser }) {
   const [contactEmail, setContactEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(postId, isUser);
+  if (contactEmail) {
+    console.log('teste', age);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,7 +70,7 @@ export default function AdoptForm({ postId, isUser }) {
       toast.error('Você precisa inserir, pelo menos, uma forma de contato.');
     }
 
-    if (contactEmail && !isEmail(contactEmail)) {
+    if (contactEmail !== '' && !isEmail(contactEmail)) {
       formErrors = true;
       toast.error('Você precisa inserir um E-mail válido.');
     }
