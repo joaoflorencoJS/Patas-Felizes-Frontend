@@ -70,7 +70,7 @@ export default function AdoptForm({ postId, isUser }) {
       toast.error('Você precisa inserir, pelo menos, uma forma de contato.');
     }
 
-    if (contactEmail !== '' && !isEmail(contactEmail)) {
+    if (contactEmail && !isEmail(contactEmail)) {
       formErrors = true;
       toast.error('Você precisa inserir um E-mail válido.');
     }
@@ -83,10 +83,11 @@ export default function AdoptForm({ postId, isUser }) {
     if (formErrors) return;
 
     try {
+      setIsLoading(true);
       await myAxios.post('/adopters', {
         full_name: fullName,
         age,
-        cpf: unMask(cpf),
+        cpf: cpf ? unMask(cpf) : null,
         cep: unMask(cep),
         address_street: addressStreet,
         address_district: addressDistrict,
@@ -94,8 +95,8 @@ export default function AdoptForm({ postId, isUser }) {
         address_complement: addressComplement,
         address_city: addressCity,
         address_state: addressState,
-        contact_phone: unMask(contactPhone),
-        contact_email: contactEmail,
+        contact_phone: contactPhone ? unMask(contactPhone) : null,
+        contact_email: contactEmail || null,
         post_id: postId,
       });
 
@@ -109,6 +110,7 @@ export default function AdoptForm({ postId, isUser }) {
         toast.error('Erro ao enviar pedido de adoção.');
       }
     }
+    setIsLoading(false);
 
     MySwal.close();
   };
