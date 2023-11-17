@@ -32,7 +32,7 @@ function calcAge(birthDate) {
 export default function AdoptForm({ postId, isUser }) {
   const MySwal = withReactContent(Swal);
   const [fullName, setFullName] = useState('');
-  const [age, setAge] = useState(Date);
+  const [age, setAge] = useState(0);
   const [cpf, setCpf] = useState('');
   const [cep, setCep] = useState('');
   const [addressStreet, setAddressStreet] = useState('');

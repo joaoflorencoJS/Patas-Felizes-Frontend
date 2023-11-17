@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import { FaUserCircle } from 'react-icons/fa';
 import axios from '../../services/axios';
+import { Container } from '../../styles/GlobalStyles';
+import { Main } from './styled';
 
 export default function MyDonations({ match }) {
   const [user, setUser] = useState(null);
@@ -28,27 +31,43 @@ export default function MyDonations({ match }) {
   }, []);
 
   return (
-    <div>
-      <h1>teste</h1>
+    <Container>
       {user && (
-        <main>
-          <h1>{user.name}</h1>
-          <h2>{user.email}</h2>
-          <section>
-            <h3>Posts</h3>
-            <ul>
-              {posts.map((post) => (
-                <li key={post.id}>
-                  <h4>{post.title}</h4>
-                  <p>{post.description}</p>
-                  <small>{post.adopter.length}</small>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </main>
+        <Main className="m-2 container">
+          <div className="p-2">
+            <div className="card">
+              <header className="card-header">
+                {user.profilePhoto ? (
+                  <img
+                    src={user.profilePhoto}
+                    alt="Foto de perfil do dono do post"
+                  />
+                ) : (
+                  <FaUserCircle size={34} />
+                )}
+                <h1 className="card-title m-0">{user.name}</h1>
+              </header>
+              <section className="card-body">
+                <h3>Posts</h3>
+
+                <ul className="row">
+                  {posts.map((post) => (
+                    <li key={post.id} className="col-6">
+                      <h4>{post.title}</h4>
+                      <p>{post.description}</p>
+                      <small className="font-italic text-muted">
+                        Número de pedidos para adotar o pet:{' '}
+                        {post.adopter.length}
+                      </small>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+          </div>
+        </Main>
       )}
-    </div>
+    </Container>
   );
 }
 
