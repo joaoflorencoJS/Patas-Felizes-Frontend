@@ -4,13 +4,19 @@ import withReactContent from 'sweetalert2-react-content';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { GoPlus } from 'react-icons/go';
+import { get } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
 import PostForm from '../../components/PostForm';
 import { Section } from './styled';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Adoption() {
+  const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.auth.user || state.auth.ong);
+
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,13 +28,19 @@ export default function Adoption() {
       try {
         const { data } = await axios.get('/posts');
 
-        setPosts(data);
-
-        console.log(posts);
+        return setPosts(data);
       } catch (error) {
-        toast.error('Erro ao carregar os posts.');
+        const status = get(error, 'response.status', '');
+
+        if (status === 401) {
+          dispatch(actions.authFailure());
+          return toast.error('Token inválido. Faça login para continuar.');
+        }
+
+        return toast.error('Erro ao carregar os posts.');
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     })();
   }, []);
 
@@ -73,7 +85,11 @@ export default function Adoption() {
               <div className="card-body border-top">
                 <h5 className="card-title">{post.title}</h5>
                 <p>{post.content}</p>
-                <Link to={`/post/${post.id}/show`}>Ver mais</Link>
+                {(post.ong_id || post.user_id) === id ? (
+                  <Link to={`/post/${post.id}/show`}>Ver mais</Link>
+                ) : (
+                  <Link to={`/post/${post.id}/show`}>Ver mais</Link>
+                )}
               </div>
             </div>
           </div>

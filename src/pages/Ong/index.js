@@ -4,15 +4,19 @@ import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
 import Loading from '../../components/Loading';
 import { Main } from './styled';
 import whenCreatedWas from '../../services/whenCreatedWas';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Ong({ match }) {
   const id = get(match, 'params.id', '');
+  const dispatch = useDispatch();
+
   const [ong, setOng] = useState(null);
   const [ongPosts, setOngPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,16 +30,20 @@ export default function Ong({ match }) {
         setOng(data);
         setOngPosts(data.Posts);
       } catch (errors) {
-        console.log(errors);
+        const status = get(errors, 'response.status', '');
         const error = get(
           errors,
           'response.data.error',
           'Erro ao obter o perfil da Ong.'
         );
 
-        toast.error(error);
-
-        history.replace('/adote');
+        if (status === 401) {
+          dispatch(actions.authFailure());
+          toast.error('Token inválido. Faça login para continuar.');
+        } else {
+          toast.error(error);
+          history.replace('/adote');
+        }
       }
       setIsLoading(false);
     })();

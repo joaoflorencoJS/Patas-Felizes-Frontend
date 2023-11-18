@@ -57,11 +57,9 @@ export default function PostForm({ MySwal, setPosts, posts }) {
 
       return setPosts([data, ...posts]);
     } catch (err) {
-      const error = get(err, 'response.data.errors', '');
-      if (error) return toast.error(error);
+      const error = get(err, 'response.data.errors', 'Erro ao criar postagem');
 
-      console.log(err);
-      return toast.error('Erro ao criar postagem');
+      return toast.error(error);
     } finally {
       setIsLoading(false);
     }

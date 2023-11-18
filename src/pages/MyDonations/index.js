@@ -2,18 +2,22 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { FaUserCircle } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import axios from '../../services/axios';
 import { Container } from '../../styles/GlobalStyles';
 import { Main } from './styled';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function MyDonations({ match }) {
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const { id } = get(match, 'params', '');
   const { path } = match;
   const isUser = path.split('/')[1] === 'user';
+
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -25,7 +29,15 @@ export default function MyDonations({ match }) {
         setUser(data);
         setPosts(data.Posts);
       } catch (error) {
-        console.log(error);
+        const status = get(error, 'response.status', '');
+        const err = get(error, 'response.data.errors', '');
+
+        if (status === 401 && err) {
+          dispatch(actions.authFailure());
+          toast.error('Token inválido. Faça login para continuar.');
+        } else {
+          toast.error('Erro ao mostrar suas doações.');
+        }
       }
     })();
   }, []);

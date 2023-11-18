@@ -29,7 +29,7 @@ function calcAge(birthDate) {
   return age;
 }
 
-export default function AdoptForm({ postId, isUser }) {
+export default function AdoptForm({ postId, isUser, setAdopter, adopter }) {
   const MySwal = withReactContent(Swal);
   const [fullName, setFullName] = useState('');
   const [age, setAge] = useState(0);
@@ -84,7 +84,7 @@ export default function AdoptForm({ postId, isUser }) {
 
     try {
       setIsLoading(true);
-      await myAxios.post('/adopters', {
+      const { data } = await myAxios.post('/adopters', {
         full_name: fullName,
         age,
         cpf: cpf ? unMask(cpf) : null,
@@ -101,6 +101,8 @@ export default function AdoptForm({ postId, isUser }) {
       });
 
       toast.success('Pedido de adoção enviado com sucesso!');
+
+      setAdopter([{ id: data.id, user_id: data.user_id }, ...adopter]);
     } catch (errors) {
       const arrayErrors = get(errors, 'response.data.errors', '');
 
@@ -354,4 +356,6 @@ export default function AdoptForm({ postId, isUser }) {
 AdoptForm.propTypes = {
   postId: PropTypes.string.isRequired,
   isUser: PropTypes.bool.isRequired,
+  setAdopter: PropTypes.func.isRequired,
+  adopter: PropTypes.shape([]).isRequired,
 };
