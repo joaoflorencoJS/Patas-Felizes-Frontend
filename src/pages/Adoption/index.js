@@ -85,11 +85,7 @@ export default function Adoption() {
               <div className="card-body border-top">
                 <h5 className="card-title">{post.title}</h5>
                 <p>{post.content}</p>
-                {(post.ong_id || post.user_id) === id ? (
-                  <Link to={`/post/${post.id}/show`}>Ver mais</Link>
-                ) : (
-                  <Link to={`/post/${post.id}/show`}>Ver mais</Link>
-                )}
+                <Link to={`/post/${post.id}`}>Ver mais</Link>
               </div>
             </div>
           </div>

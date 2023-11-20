@@ -11,6 +11,7 @@ import Post from '../pages/Post';
 import Ong from '../pages/Ong';
 import User from '../pages/User';
 import MyDonations from '../pages/MyDonations';
+import OwnerPost from '../pages/OwnerPost';
 
 export default function Routes() {
   return (
@@ -20,7 +21,7 @@ export default function Routes() {
       <MyRoute exact path="/register" component={Register} isClosedLoggedIn />
       <MyRoute exact path="/info" component={Info} isClosed />
       <MyRoute exact path="/adote" component={Adoption} isClosed />
-      <MyRoute exact path="/post/:id/show" component={Post} isClosed />
+      <MyRoute exact path="/post/:id" component={Post} isClosed />
       <MyRoute exact path="/ong/:id" component={Ong} isClosed />
       <MyRoute exact path="/user/:id" component={User} isClosed />
       <MyRoute
@@ -36,6 +37,18 @@ export default function Routes() {
         component={MyDonations}
         isClosedForUser
         isClosed
+      />
+      <MyRoute
+        exact
+        path="/user/:id/post/:postId"
+        component={OwnerPost}
+        isClosedForUser
+      />
+      <MyRoute
+        exact
+        path="/ong/:id/post/:postId"
+        component={OwnerPost}
+        isClosedForUser
       />
       <MyRoute path="*" component={Page404} />
     </Switch>

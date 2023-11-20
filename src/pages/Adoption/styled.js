@@ -43,7 +43,8 @@ export const Section = styled.section`
     &:hover {
       border: 3px solid ${colors.primaryColor};
       background: #eee;
-      filter: brightness(75%);
+      filter: brightness(85%);
+      transform: scale(1.02);
     }
   }
 `;

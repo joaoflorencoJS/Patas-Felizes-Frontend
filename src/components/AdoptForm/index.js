@@ -136,7 +136,7 @@ export default function AdoptForm({ postId, isUser, setAdopter, adopter }) {
           />
         </label>
         <label htmlFor="age">
-          Idade
+          Data de Nascimento
           <input
             type="date"
             id="age"
@@ -357,5 +357,5 @@ AdoptForm.propTypes = {
   postId: PropTypes.string.isRequired,
   isUser: PropTypes.bool.isRequired,
   setAdopter: PropTypes.func.isRequired,
-  adopter: PropTypes.shape([]).isRequired,
+  adopter: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };

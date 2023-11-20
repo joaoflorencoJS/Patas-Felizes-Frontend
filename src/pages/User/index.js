@@ -112,9 +112,7 @@ export default function User({ match }) {
                           )}
                           <div>
                             <h4 className="card-title m-0">
-                              <Link to={`/post/${post.id}/show`}>
-                                {post.title}
-                              </Link>
+                              <Link to={`/post/${post.id}`}>{post.title}</Link>
                             </h4>
                             <p className="font-italic text-muted">
                               {whenCreatedWas(post.created_at)}

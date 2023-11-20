@@ -19,6 +19,9 @@ import * as actions from '../../store/modules/auth/actions';
 export default function Post({ match }) {
   const id = get(match, 'params.id', '');
   const { id: userId } = useSelector((state) => state.auth.user) ?? { id: '' };
+  const { id: sessionId } = useSelector(
+    (state) => state.auth.user || state.auth.ong
+  );
   const isOng = !!useSelector((state) => state.auth.ong);
   const dispatch = useDispatch();
 
@@ -34,6 +37,12 @@ export default function Post({ match }) {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`/posts/${id}`);
+
+        if ((isOng && sessionId) === data.ong_id) {
+          history.replace(`/ong/${sessionId}/post/${id}`);
+        } else if (sessionId === data.user_id) {
+          history.replace(`/user/${sessionId}/post/${id}`);
+        }
 
         if (!data.user) {
           setOwnerPost(data.ong);

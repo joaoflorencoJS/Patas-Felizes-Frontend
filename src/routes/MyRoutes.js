@@ -14,8 +14,8 @@ export default function MyRoute({
 }) {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { user, ong } = useSelector((state) => state.auth);
-  const { id } = user || ong;
-  const { id: sessionId } = get(rest, 'computedMatch.params', '');
+  const { id: sessionId } = user || ong;
+  const { id: paramId } = get(rest, 'computedMatch.params', '');
 
   if (isClosed && !isLoggedIn) {
     toast.error(
@@ -34,12 +34,12 @@ export default function MyRoute({
     );
   }
 
-  if (isLoggedIn && isClosedForUser && sessionId !== id) {
+  if (isLoggedIn && isClosedForUser && sessionId !== paramId) {
     toast.error('Você não possui autorização para executar a ação desejada.');
     return (
       <Redirect
         to={{
-          pathname: `${user ? '/user' : '/ong'}/${user ? user.id : ong.id}`,
+          pathname: `${user ? '/user' : '/ong'}/${sessionId}`,
         }}
       />
     );
