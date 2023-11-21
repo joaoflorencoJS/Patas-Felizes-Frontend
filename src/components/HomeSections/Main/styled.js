@@ -9,9 +9,10 @@ export const LandingContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  background: url(${bgMainPage}) no-repeat;
-  background-size: cover;
-  background-position: center;
+  /* background: url(${bgMainPage}) no-repeat; */
+  background: linear-gradient(${colors.pink2}, ${colors.pink4});
+  /* background-size: cover; */
+  /* background-position: center; */
 
   @media (min-height: 729.98px) and (min-width: 767.98px) {
     position: sticky;

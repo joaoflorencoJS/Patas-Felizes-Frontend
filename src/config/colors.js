@@ -2,6 +2,7 @@ export const primaryColor = '#A35D82';
 export const secondaryColor = '#FECCE7';
 export const terciaryColor = '#B93E81';
 export const pink4 = '#E685B5';
+export const pink2 = '#EFADCE';
 export const primaryDarkColor = '#1A1A1D';
 
 export const successColor = '#138636';

@@ -28,7 +28,6 @@ export default function User({ match }) {
       try {
         const { data } = await axios.get(`/users/${id}`);
 
-        console.log(data);
         setUser(data);
         setUserPosts(data.Posts);
       } catch (errors) {

@@ -45,10 +45,6 @@ export default function AdoptForm({ postId, isUser, setAdopter, adopter }) {
   const [contactEmail, setContactEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  if (contactEmail) {
-    console.log('teste', age);
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -180,8 +176,6 @@ export default function AdoptForm({ postId, isUser, setAdopter, adopter }) {
                     `https://viacep.com.br/ws/${onChangeCep}/json`
                   );
 
-                  console.log(data);
-
                   if (data.erro) {
                     MySwal.fire({
                       icon: 'question',
@@ -227,7 +221,7 @@ export default function AdoptForm({ postId, isUser, setAdopter, adopter }) {
                   setAddressCity(data.localidade);
                   setAddressState(data.uf);
                 } catch (error) {
-                  console.log(error);
+                  toast.error('Erro ao buscar CEP');
                 } finally {
                   setIsLoading(false);
                 }

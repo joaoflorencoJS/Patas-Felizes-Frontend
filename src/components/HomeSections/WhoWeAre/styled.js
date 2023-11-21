@@ -35,7 +35,7 @@ export const HomeContent = styled.div`
   justify-content: center;
   gap: 20px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 390px) {
     h2 {
       flex-direction: column;
     }

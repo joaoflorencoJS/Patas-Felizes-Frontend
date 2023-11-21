@@ -30,7 +30,7 @@ export default function LandingHomePageMain() {
             {isLoggedIn ? 'Adote um animal' : 'Faça seu cadastro'}
           </Link>
         </HomeContent>
-        <HomeContent className="col-md">
+        <HomeContent className="col-md p-2">
           <DivImg className="gap-20">
             <Img src={homeCat} alt="" className="img-fluid" />
             <Img src={homeDog} alt="" className="img-fluid" />

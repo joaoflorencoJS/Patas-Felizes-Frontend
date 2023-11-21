@@ -28,7 +28,7 @@ export const Section = styled.section`
 
   a {
     color: #000;
-    transition: all 300ms;
+    transition: all ease 300ms;
 
     &:hover {
       color: #6c757d;
@@ -37,5 +37,6 @@ export const Section = styled.section`
 
   td {
     word-break: break-word;
+    vertical-align: middle;
   }
 `;

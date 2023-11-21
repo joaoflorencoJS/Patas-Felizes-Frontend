@@ -2,14 +2,14 @@ import React from 'react';
 import { Container } from './styled';
 import LandingHomePageMain from '../../components/HomeSections/Main';
 import LandingHomePageWhoWeAre from '../../components/HomeSections/WhoWeAre';
-import LandingHomePageWhoWeAre2 from '../../components/HomeSections/WhoWeAre copy';
+import LandingHomeThirdSectionHome from '../../components/HomeSections/ThirdSectionHome';
 
 export default function Home() {
   return (
     <Container>
       <LandingHomePageMain />
       <LandingHomePageWhoWeAre />
-      <LandingHomePageWhoWeAre2 />
+      <LandingHomeThirdSectionHome />
     </Container>
   );
 }

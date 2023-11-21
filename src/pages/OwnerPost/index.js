@@ -40,10 +40,7 @@ export default function OwnerPost({ match }) {
 
         setPost(data);
         setAdopters(data.adopter);
-
-        console.log(data);
       } catch (errors) {
-        console.log(errors);
         const error = get(
           errors,
           'response.data.errors',

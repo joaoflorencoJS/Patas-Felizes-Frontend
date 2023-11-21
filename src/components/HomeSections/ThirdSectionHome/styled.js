@@ -21,7 +21,7 @@ export const LandingContainer = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(${bgMainPage}) no-repeat;
+    background: linear-gradient(45deg, ${colors.pink2}, ${colors.pink4});
     background-size: cover;
     background-position: center;
   }
@@ -34,9 +34,14 @@ export const HomeContent = styled.div`
   justify-content: center;
   gap: 20px;
 
-  @media (max-width: 360px) {
+  h2 {
+    word-break: break-word;
+  }
+
+  @media (max-width: 992px) {
     h2 {
       flex-direction: column;
+      font-size: 3rem;
     }
   }
 

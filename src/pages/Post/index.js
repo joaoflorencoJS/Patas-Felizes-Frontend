@@ -57,7 +57,6 @@ export default function Post({ match }) {
         setPost(data);
         setAdopter(data.adopter);
       } catch (errors) {
-        console.log(errors);
         const error = get(
           errors,
           'response.data.error',
