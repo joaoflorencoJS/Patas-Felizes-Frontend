@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaEdit, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
@@ -12,15 +14,19 @@ import Loading from '../../components/Loading';
 import { Main } from './styled';
 import whenCreatedWas from '../../services/whenCreatedWas';
 import * as actions from '../../store/modules/auth/actions';
+import EditProfileForm from '../../components/EditProfileForm';
 
 export default function User({ match }) {
   const id = get(match, 'params.id', '');
   const dispatch = useDispatch();
+  const { id: userId } = useSelector((state) => state.auth.user) ?? { id: '' };
+  const isUserOwner = userId === id;
 
   const [user, setUser] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     (async () => {
@@ -50,15 +56,24 @@ export default function User({ match }) {
     })();
   }, [id]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+
+    MySwal.fire({
+      html: (
+        <EditProfileForm
+          MySwal={MySwal}
+          isUser={isUserOwner}
+          id={userId}
+          setUserOrOng={setUser}
+          userOrOng={user}
+          setIsLoading={setIsLoading}
+        />
+      ),
+      showConfirmButton: false,
+      showCloseButton: true,
+    });
+  };
 
   return (
     <Container>
@@ -76,7 +91,25 @@ export default function User({ match }) {
                 ) : (
                   <FaUserCircle size={34} />
                 )}
-                <h1 className="card-title m-0">{user.name}</h1>
+                <div className="d-flex justify-content-between align-items-center w-100">
+                  <div>
+                    <h1 className="card-title m-0">{user.name}</h1>
+                  </div>
+
+                  <div>
+                    {isUserOwner ? (
+                      <button
+                        type="button"
+                        className="d-flex justify-content-center"
+                        onClick={handleEditProfile}
+                      >
+                        <FaEdit size={22} className="mr-1" /> Editar perfil
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
               </div>
               <div className="card-body">
                 <div className="row">
@@ -86,13 +119,14 @@ export default function User({ match }) {
                         <h1 className="card-title m-0">informações</h1>
                       </div>
                       <div className="card-body">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Labore temporibus eligendi placeat omnis,
-                          molestiae libero quae voluptatum. Ipsa ex iste totam
-                          blanditiis similique quod velit architecto tempora,
-                          nisi itaque qui!
-                        </p>
+                        {user.user_info ? (
+                          <p>{user.user_info}</p>
+                        ) : (
+                          <p className="text-center">
+                            Nenhuma informação sobre este usuário adicionada
+                            ainda...
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
