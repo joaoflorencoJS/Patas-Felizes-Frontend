@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { get } from 'lodash';
+import { get, set } from 'lodash';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { mask } from 'remask';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
 import { Container } from '../../styles/GlobalStyles';
 import { Section } from './styled';
 import whenCreatedWas from '../../services/whenCreatedWas';
 import * as actions from '../../store/modules/auth/actions';
+import history from '../../services/history';
 
 export default function OwnerPost({ match }) {
-  const { postId } = get(match, 'params', '');
+  const { id, postId } = get(match, 'params', '');
+  const isOng = !!useSelector((state) => state.auth.ong);
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState(null);
   const [ownerPost, setOwnerPost] = useState({});
   const [adopters, setAdopters] = useState([]);
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     (async () => {
@@ -59,6 +65,49 @@ export default function OwnerPost({ match }) {
     })();
   }, []);
 
+  const handleDeletePost = async () => {
+    MySwal.fire({
+      title: 'Você tem certeza que deseja deletar esse post?',
+      text: 'Este ato é irreversível!',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#138636',
+      confirmButtonText: 'Deletar',
+      cancelButtonColor: '#C3073F',
+    }).then(async (result) => {
+      if (result.value) {
+        setIsLoading(true);
+        try {
+          await axios.delete(`/posts/${postId}`);
+
+          toast.success('Post deletado com sucesso!');
+
+          if (isOng) {
+            history.replace(`/ong/${id}/minhas-doacoes`);
+          } else {
+            history.replace(`/user/${id}/minhas-doacoes`);
+          }
+        } catch (errors) {
+          const error = get(
+            errors,
+            'response.data.errors',
+            'Erro ao deletar o post.'
+          );
+          const status = get(errors, 'response.status', '');
+
+          if (status === 401) {
+            dispatch(actions.authFailure());
+            toast.error('Token inválido. Faça login para continuar.');
+          } else {
+            toast.error(error);
+          }
+        }
+        setIsLoading(false);
+      }
+    });
+  };
+
   return (
     <Container>
       <Loading isLoading={isLoading} />
@@ -75,7 +124,7 @@ export default function OwnerPost({ match }) {
                 ) : (
                   <FaUserCircle size={34} />
                 )}
-                <div className="d-flex justify-content-between align-items-center w-100">
+                <div className="row m-0 justify-content-between align-items-center w-100">
                   <div>
                     <h4 className="m-0">
                       <Link
@@ -89,6 +138,11 @@ export default function OwnerPost({ match }) {
                       </Link>
                     </h4>
                     <p className="font-italic text-muted">{post.created_at}</p>
+                  </div>
+                  <div>
+                    <button type="button" onClick={handleDeletePost}>
+                      Deletar post
+                    </button>
                   </div>
                 </div>
               </header>
@@ -217,7 +271,7 @@ export default function OwnerPost({ match }) {
               ))}
             </div>
           ) : (
-            <div className="p-2 col-6">
+            <div className="p-2 col-12 col-lg-6">
               <h1 className="text-center">
                 Não há adoções para este post ainda.
               </h1>

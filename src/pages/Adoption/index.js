@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { GoPlus } from 'react-icons/go';
 import { get } from 'lodash';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
 import Loading from '../../components/Loading';
@@ -15,7 +15,6 @@ import * as actions from '../../store/modules/auth/actions';
 
 export default function Adoption() {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.auth.user || state.auth.ong);
 
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
