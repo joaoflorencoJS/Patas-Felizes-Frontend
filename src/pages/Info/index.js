@@ -16,13 +16,13 @@ export default function Info() {
         >
           <li className="col-4 col-md-12 p-0 mt-md-3">
             <a
-              className="nav-link nav-link-top link-outline-primary-color h-100"
+              className="nav-link nav-link-top link-outline-primary-color h-100 active"
               id="v-pills-cat-tab"
               data-toggle="pill"
               href="#v-pills-cat"
               role="tab"
               aria-controls="v-pills-cat"
-              aria-selected="false"
+              aria-selected="true"
             >
               Informações sobre gatos
             </a>

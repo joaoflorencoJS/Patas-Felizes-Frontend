@@ -43,12 +43,14 @@ export default function Routes() {
         path="/user/:id/post/:postId"
         component={OwnerPost}
         isClosedForUser
+        isClosed
       />
       <MyRoute
         exact
         path="/ong/:id/post/:postId"
         component={OwnerPost}
         isClosedForUser
+        isClosed
       />
       <MyRoute path="*" component={Page404} />
     </Switch>

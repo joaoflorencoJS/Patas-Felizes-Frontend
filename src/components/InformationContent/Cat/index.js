@@ -4,7 +4,7 @@ import { Container } from '../styled';
 export default function Cat() {
   return (
     <Container
-      className="tab-pane fade"
+      className="tab-pane fade show active"
       id="v-pills-cat"
       role="tabpanel"
       aria-labelledby="v-pills-cat-tab"
