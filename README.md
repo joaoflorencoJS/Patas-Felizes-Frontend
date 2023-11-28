@@ -3,8 +3,8 @@
 <p align="center">Projeto desenvolvido durante o ano de 2023 para a conclusão do curso de Técnico em Desenvolvimento de Sistemas Integrado ao Ensino Médio na Etec Profª Marinês Teodoro de Freitas Almeida. </p>
 
 <p align="center">
-  <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Sobre o Projeto</a>
+  <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-tecnologias-utilizadas">Tecnologias</a>
 </p>
 
 ## 💻 Sobre o projeto
@@ -17,3 +17,24 @@ O site conta com inúmeros recursos para atingir o objetivo em questão. Como:
  - Uma página para visualizar quais foram as suas postagens e as pessoas interessadas pelos animais;
  - Um formulário de pré-adoção com dados essenciais para contato e localização do usuário que deseja adotar;
  - Uma página que contém várias informações de cuidados necessários com os pets.
+
+## 🚀 Tecnologias utilizadas
+
+O Front-end do Patas Felizes foi desenvolvido utilizando as seguintes tecnologias:
+
+ - `Linguagem de programação:`
+   - JavaScript.
+ - `Frameworks, bibliotecas e ferramentas:`
+   - React.js;
+   - Bootstrap;
+   - Axios;
+   - History;
+   - Redux;
+   - styled-components.
+ - `Ambiente de Execução:`
+   - Node.js@18.17.1.
+
+
+---
+
+O projeto Patas Felizes foi desenvolvido por Flávio Gabriel Boar, Isabela de Camargo e João Pedro Florenço.
