@@ -23,16 +23,16 @@ O site conta com inúmeros recursos para atingir o objetivo em questão. Como:
 O Front-end do Patas Felizes foi desenvolvido utilizando as seguintes tecnologias:
 
  - `Linguagem de programação:`
-   - JavaScript;
+   - JavaScript.
  - `Frameworks, bibliotecas e ferramentas:`
-   - React.js
-   - Bootstrap
-   - Axios
-   - History
-   - Redux
-   - styled-components     
+   - React.js;
+   - Bootstrap;
+   - Axios;
+   - History;
+   - Redux;
+   - styled-components.
  - `Ambiente de Execução:`
-   - Node.js@18.17.1;
+   - Node.js@18.17.1.
 
 
 ---
